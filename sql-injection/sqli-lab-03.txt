@@ -1,0 +1,26 @@
+SQL Injection Product Category
+https://www.w3schools.com/sql/sql_union.asp
+
+Goal: Determine the number of columns returned by the query
+
+Background (Union):
+
+table1      table2
+a | b       c | d 
+-----       -----
+1 , 2       2 , 3
+3 , 4       4 , 5
+
+Query #1: select a, b from table1
+1,2
+3,4
+
+Query #2: select a, b from table1 UNION select c,d from table2
+1,2
+3,4
+2,3
+4,5
+
+Rule: 
+- The number and the order of the columns must be the same in all queries
+- The data types must be compatible

