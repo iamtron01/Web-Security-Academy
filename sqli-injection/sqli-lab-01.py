@@ -7,7 +7,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 def is_exploitable(url, payload):
     proxies = {
     'http': 'http://127.0.0.1:8080',
-    'https':'http://127.0.0.1:8080' }
+    'https':'http://127.0.0.1:8080'}
     uri = '/filter?category='
     request = requests.get(
         url + uri + payload,
