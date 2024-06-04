@@ -33,3 +33,4 @@ if __name__ == "__main__":
     except Exception as exception:
         print("An exception occured" % exception)
         print("[-] The SQLi attack was not successful.")
+        sys.exit(-1)
