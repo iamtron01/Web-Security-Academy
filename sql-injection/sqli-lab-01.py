@@ -10,11 +10,11 @@ proxies = {
 
 def is_exploitable(url, category):
     uri = '/filter?category='
-    request = requests.get(
+    response = requests.get(
         url + uri + category,
         verify=False,
         proxies=proxies)
-    return "Cat Grin" in request.text
+    return "Cat Grin" in response.text
 
 if __name__ == "__main__":
     try:

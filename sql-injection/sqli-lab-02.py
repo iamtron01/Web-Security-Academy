@@ -30,8 +30,8 @@ def is_exploitable(url, user, session):
         url, 
         data=data,
         verify=False,
-        proxies=proxies).text
-    return "Log out" in response
+        proxies=proxies)
+    return "Log out" in response.text
 
 if __name__ == "__main__":
     try:
