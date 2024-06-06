@@ -34,7 +34,9 @@ def get_exploit_sqli_string_field(url, num_col):
             url + uri + sql_payload,
             verify=False,
             proxies=proxies)
-        if (response.text.count(string.strip('\'')) == 2 in response.text):
+        if (response.text.count(
+                string.strip('\'')) == 2 
+                in response.text):
             return number
     raise ValueError("Could not find the string column")
 
