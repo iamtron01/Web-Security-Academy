@@ -24,9 +24,10 @@ def get_exploit_sqli_administrator_password(url):
         html = BeautifulSoup(
             response.text,
             'html.parser')
-        return html.body.find(
+        password = html.body.find(
             string=username).parent.find_next(
             'td').contents[0]
+        return password
     raise ValueError("Could not find the administrator password.")
 
 if __name__ == "__main__":
