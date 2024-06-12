@@ -6,6 +6,8 @@ from bs4 import BeautifulSoup
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+FAIL = -1
+
 proxies = {
     'http': 'http://127.0.0.1:8080',
     'https': 'http://127.0.0.1:8080'}
@@ -45,4 +47,4 @@ if __name__ == "__main__":
     except IndexError:
         print("[-] Usage: %s <url> <user>" % sys.argv[0])
         print('[-] Example: %s www.example.com "1=1"' % sys.arv[0])
-        sys.exit(-1)
+        sys.exit(FAIL)

