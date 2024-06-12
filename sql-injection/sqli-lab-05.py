@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-SUCCESS = 3
 FAIL = -1
 
 proxies = {
