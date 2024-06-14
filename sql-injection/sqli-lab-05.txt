@@ -3,7 +3,7 @@ Goal - Output usernames and passwords, login as administrator
 
 Analysis:
 
-Determine if injectable, filter?category=Gifts
+Determine if injectable, filter?category=Gifts'
 
 1. Determine number of columns
 filter?category=Gifts' order by 1--
