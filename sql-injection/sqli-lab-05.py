@@ -40,3 +40,7 @@ if __name__ == "__main__":
         print("[-] Usage: %s <url>" % sys.argv[0])
         print("[-] Example: %s www.example.com" % sys.argv[0])
         sys.exit(FAIL)
+    except Exception as exception:
+        print("An exception occured %s" % exception)
+        print("[-] The SQLi attack was not successful.")
+        sys.exit(FAIL)     
