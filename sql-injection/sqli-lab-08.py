@@ -3,8 +3,6 @@ import sys
 import urllib3
 import re
 
-from bs4 import BeautifulSoup
-
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 SUCCESS = 2
