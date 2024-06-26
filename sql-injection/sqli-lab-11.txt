@@ -60,6 +60,4 @@ select tracking-id from tracking-table where trackingId = '0IzjMBaRbH8TAJMI'
 -Payload 1, Numbers 1-20
 -Payload 2, Brute Forcer, Character Set keep default, min length 1, max length 1
 
-1 2 3 4 5 6 7 8 9 0 11 12 13 14 15 16 17 18 19 20
-
 6l5jj22a0g37dpeniki4

