@@ -1,0 +1,11 @@
+2FA Simple bypass
+Goal: Bypass the 2FA verification
+
+Yours wiener:peter
+Victim carlos:montoya
+
+1)
+-My account
+-carlos, montoya
+-Click Back
+-Click My account
