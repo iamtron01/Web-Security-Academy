@@ -1,0 +1,26 @@
+Username enumeration via different responses
+Goal: Enumerate a valid username and password to access the applicaiton
+
+1)
+-test, test
+-Send /login to intruder
+-Mark username
+-Payloads
+-Copy candidate usernames
+-Paste
+-Start attack
+-> Response length 3250 different, username asia
+
+2)
+-Intruder
+-Mark password
+-asia, test
+-Payloads
+-Copy Passwords
+-Paste
+-Start attack
+-> 186 length different, password robert
+
+Observations:
+-Verbose error messages for login failures
+-No account lock threshold
