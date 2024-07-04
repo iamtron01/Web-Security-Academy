@@ -1,0 +1,23 @@
+Username enumeration via subtly different responses
+
+Goal: Enumerate a valid username and then brute-force the user's password.
+
+1)
+-login page, admin, admin
+-login page send to intruder
+-Mark username
+-Payloads
+-Paste in usernames
+-Start attack
+-Filter
+-Invalid username or password.
+-Negative search
+-> athena
+
+2)
+-login page send to intruder
+-Set username to athena
+-Mark password
+-Paste in passwords
+-Start attack
+->302, password
