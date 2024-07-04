@@ -1,0 +1,15 @@
+Password reset broken logic
+Goal: Reset Carlos's password and then login.
+
+Yours: wiener:peter
+Victim: carlos
+
+1)
+-Reset Password for your account
+-Click Reset Password Email
+-Put in password and submit
+-Forgot-password send to repeater
+-Change top and bottom temp token to x
+-Change username to carlos
+-Submit, Follow redirection
+->App didn't check to make sure the matching tokens were valid
