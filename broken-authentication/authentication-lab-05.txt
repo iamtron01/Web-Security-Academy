@@ -1,0 +1,49 @@
+Username enumeration via response timing
+
+Goal: Enumerate a valid username and then brute-force the user's password.
+
+You: wiener:peter
+
+1)
+-My Account
+-notauser,gkdlqmrzaehotbuwfcnvpjxyqlmebczvfglndhsmroxyptuwajbizkvehqwrxnopsdtikgmajlyubfczhvpnrteowmdsyaklxg
+-Send to Repeater
+-Send
+-> 125ms
+- wiener,gkdlqmrzaehotbuwfcnvpjxyqlmebczvfglndhsmroxyptuwajbizkvehqwrxnopsdtikgmajlyubfczhvpnrteowmdsyaklxg
+-Send
+->283ms
+-If you get locked add the header, X-Forwarded-For: 1 below Accept-Encoding
+--The X-Forwarded-For HTTP header is used to identify the
+--originating IP address of a client connecting to a web server
+--through an HTTP proxy or load balancer.
+
+2)
+-Send to Intruder
+-Attack Type
+-Pitch Fork
+-Mark username
+-Mark X-Forwarded-For:
+-Payloads
+-Payload Set 1
+-Numbers
+-1 to 100
+-Payload Set 2
+-Paste usernames
+-> al
+
+3)
+-Intruder
+-username:al
+-Mark password
+-Mark X-Forwarded-For
+-Payloads
+-Payload Set 1
+-Numbers
+-101 to 201
+-Payload Set 2
+-Paste Passwords
+-> 302, summer
+
+4)
+al, summer
