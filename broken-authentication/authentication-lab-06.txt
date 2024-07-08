@@ -1,0 +1,18 @@
+Broken brute-force protection, IP block
+Goal: Brute force the victim's password
+
+Yours: wiener:peter
+Victim: carlos
+
+1)
+-Login
+-Send to intruder
+-Attack type, Pitchfork
+-Mark username, Mark password
+-Payloads
+-Paste payload 1 usernames from python script
+-Paste payload 2 passwords from python script
+-Resource pool 1 concurrent connection
+-Start Attack
+
+carlos,harley
