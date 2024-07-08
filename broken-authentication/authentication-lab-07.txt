@@ -1,0 +1,24 @@
+Username enumeration via account lock
+Goal: Exploit logic flaw to enumerate valid username and then brute-force user's password
+
+ag, robert
+
+1)
+-Login
+-Send to Intruder
+-Cluster bomb
+-Mark username
+-Mark password, 123§§
+-Position 1, paste usernames
+-Position 2, Null payloads, Generate 5
+-Start attack
+-> Account locked out tells us we've got a username.
+
+2)
+-Login
+-Send to Intruder
+-Sniper
+-Mark password
+-Position 1, paste passwords
+-Start attack
+-> Response with no error indicates we found the password.
