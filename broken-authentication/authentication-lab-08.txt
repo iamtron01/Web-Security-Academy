@@ -1,0 +1,25 @@
+2FA Broken logic
+Goal: Exploit 2FA logic flaw to access Carlos's account
+
+wiener:peter
+carlos
+
+1)
+-/login2 get
+-Send to repeater
+-Put in Carlos, remove session
+-Send
+
+2)
+-/login2 post
+-Send to intruder
+-Mark mfa
+-Payload, brute force, integers only
+-Attack
+-> 0403
+
+3)
+-login, wiener, peter
+-Intercept on
+-Put in code
+-Modify post to login 2, remove session, put in carlos instead of wiener
