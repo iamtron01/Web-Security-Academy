@@ -34,7 +34,7 @@ def access_carlos_account(url):
 
 if __name__ == "__main__":
     try:
-        url = "https://0a4e007304c3dc3b83190a1900af00f5.web-security-academy.net/"
+        url = sys.argv[1]
         print("(+) Brute-forcing Carlos's password...")
         password = access_carlos_account(url)
         print("[+] Carlos's password is '%s'" % password)
