@@ -1,0 +1,26 @@
+Brute-forcing a stay-logged-in cookie
+Goal: Obtain and brute force Carlos's cookie to gain access to his account.
+
+Yours: wiener:peter
+Victim: carlos
+
+1)
+-login with your account, check mark stay logged in
+-Observe stay-logged-in cookie is base64 and contains the username and md5 hash
+crackstation.net -> Online, don't paste real passwords up here.
+base64(username:md5(password))
+base64(carlos:md5(x))
+
+2)
+-Logout
+-After login take the Get /my-account and send to intruder
+-Clear out session cookie, a new one will get generated
+-Change id=winer to id=carlos
+-Mark, stay-logged-in cookie
+-Payloads
+-Paste in password list
+-Payload processing
+-Add Rule Hash MD5
+-Add Rule prefix carlos:
+-Add Rule Encode Base64-encode
+-Start attack
