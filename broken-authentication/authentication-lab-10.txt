@@ -36,3 +36,9 @@ The cookie is only accessible by the server through HTTP requests (e.g., during 
 -onceuponatime
 -Login
 -Delete account
+
+Hashcat:
+echo "26323c16d5f4dabff3bb136f2460a943" > hash.txt  
+hashcat -m 0 -a 0 hash.txt /usr/share/wordlists/rockyou.txt
+hashcat -m 0 --show hash.txt  
+-> 26323c16d5f4dabff3bb136f2460a943:onceuponatime
