@@ -1,0 +1,30 @@
+Password brute-force via password change
+Goal: Brute-force Carlos's password in the password change functionality
+
+wiener:peter
+carlos
+
+1)
+-My account
+-Login
+-update password
+-Put in wrong old password, takes you to login
+-> Too many login attempts
+
+2)
+-Put in wrong old password
+-Put in password1, password2
+-> Current password is incorrect
+
+3)
+-Put in correct old password
+-Put in password1, password2
+-> New passwords do not match
+
+4)
+-Send /my-account/change-password to Intruder
+-username=carlos
+-Mark password
+-Payloads
+-Paste password
+-> zxcvbn, New passwords do not match
