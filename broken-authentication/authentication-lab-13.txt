@@ -1,0 +1,22 @@
+Broken brute-force protection, multiple credentials per request
+Goal: Exploit logic flaw in the brute force protection mechanism and access Carlos's account
+
+carlos
+
+1)
+-My account
+-carlos, test, Login
+-Send to repeater
+-Put in an array of passwords, ["test","test1"]
+
+2)
+-Generate array of password and paste
+-Send
+-Grab the session cookie
+
+3)
+-Right click inspect Login
+-Application
+-Cookies
+-Paste in over last session cookie
+-Click My account
