@@ -1,0 +1,25 @@
+2FA bypass using a brute-force attack
+Goal: Brute-force the 2FA code and access Carlo's account page.
+
+carlos:montoya
+
+1)
+-Login, carlos,montoya
+-Send Post /login to repeater
+-Send Get /login2 to repeater
+-Put in a random code, 1111
+-Send Post /login2 to repeater
+
+2)
+-After 2 random codes, logs you out, no lockout
+-Settings, Sessions, Add a rule, Scope, Include all URLs
+-Rule Acctions, Add run a macro
+-Select Get /login, Post /login, Get /login2
+-Test Macro, Ok, Ok
+
+3)
+-Send Post /login2 to intruder
+-Mark code
+-Payloads, Brute forcer, 0-9
+-Resource Pool, Max concurrent 1
+-Start attack
