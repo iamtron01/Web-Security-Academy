@@ -1,0 +1,2 @@
+File path traversal, traversal sequences blocked with absolute path bypass
+Goal: Retrieve the contents of the /etc/passwd file
