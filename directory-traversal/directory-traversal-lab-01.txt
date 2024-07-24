@@ -1,0 +1,8 @@
+File path traversal, simple case
+Goal: Retrieve contents of the /etc/passwd File
+
+/var/www/images/65.jpg
+/var/www/images/etc/passwd
+../../../etc/passwd
+up three
+then down
