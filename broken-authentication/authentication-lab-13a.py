@@ -61,14 +61,14 @@ if __name__ == "__main__":
     try:
         url = sys.argv[1]
         session = requests.Session()
-        print("(+) Accessing Carlos's account...")
+        print("[+] Accessing Carlos's account...")
         if not access_carlos_account(url, session):
-            print("(-) Carlos's account access failed.")
+            print("[-] Carlos's account access failed.")
             sys.exit(FAIL)
-        print("(+) Carlos's account access was successful.")
+        print("[+] Carlos's account access was successful.")
     except IndexError:
-        print("(+) Usage: %s <url>" % sys.argv[0])
-        print("(+) Example: %s www.example.com" % sys.argv[0])
+        print("[+] Usage: %s <url>" % sys.argv[0])
+        print("[+] Example: %s www.example.com" % sys.argv[0])
         sys.exit(FAIL)
     except Exception as exception:
         print("An exception occured %s" % exception)

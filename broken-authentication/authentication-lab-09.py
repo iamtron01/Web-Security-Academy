@@ -35,12 +35,12 @@ def access_carlos_account(url):
 if __name__ == "__main__":
     try:
         url = sys.argv[1]
-        print("(+) Brute-forcing Carlos's password...")
+        print("[+] Brute-forcing Carlos's password...")
         password = access_carlos_account(url)
         print("[+] Carlos's password is '%s'" % password)
     except IndexError:
-        print("(+) Usage: %s <url>" % sys.argv[0])
-        print("(+) Example: %s www.example.com" % sys.argv[0])
+        print("[+] Usage: %s <url>" % sys.argv[0])
+        print("[+] Example: %s www.example.com" % sys.argv[0])
         sys.exit(FAIL)
     except Exception as exception:
         print("An exception occured %s" % exception)

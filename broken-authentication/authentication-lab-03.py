@@ -43,16 +43,16 @@ if __name__ == "__main__":
         url = sys.argv[1]
         session = requests.Session()
         if not is_password_reset_sucessful(url, session):
-            print("(-) Password Reset Failed.") 
+            print("[-] Password Reset Failed.") 
             sys.exit(FAIL) 
-        print("(+) Password Reset Successful.")
+        print("[+] Password Reset Successful.")
         if not is_login_successful(url, session):
-            print("(-) Login Failed.")
+            print("[-] Login Failed.")
             sys.exit(FAIL)
-        print("(+) Login Successful.")
+        print("[+] Login Successful.")
     except IndexError:
-        print("(+) Usage: %s <url>" % sys.argv[0])
-        print("(+) Example: %s www.example.com" % sys.argv[0])
+        print("[+] Usage: %s <url>" % sys.argv[0])
+        print("[+] Example: %s www.example.com" % sys.argv[0])
         sys.exit(FAIL)
     except Exception as exception:
         print("An exception occured %s" % exception)

