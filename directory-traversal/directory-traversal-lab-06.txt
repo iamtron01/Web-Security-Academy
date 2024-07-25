@@ -1,0 +1,4 @@
+File path traversal, validation of file extension with null byte bypass
+Goal: Retrieve the contents of the /etc/passwd file.
+
+%00 - Use Null Byte
