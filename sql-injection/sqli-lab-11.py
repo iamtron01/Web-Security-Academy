@@ -39,7 +39,7 @@ def get_password(url):
 if __name__ == "__main__":
     try:
         url = sys.argv[1].strip()
-        print("(+) Retrieving administrator password...")
+        print("[+] Retrieving administrator password...")
         get_password(url)
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])

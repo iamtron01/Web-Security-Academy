@@ -28,7 +28,7 @@ if __name__ == "__main__":
         url = sys.argv[1].strip()
         print("Checking if tracking cookie is vulnerable to time-based blind SQLi...")
         if is_vulnerable_to_time_based_sqli(url):
-            print("(+) Vulnerable to blind-based SQL injection")
+            print("[+] Vulnerable to blind-based SQL injection")
         else:
             print("(-) Not vulnerable to blind based SQL injection")
     except IndexError:
