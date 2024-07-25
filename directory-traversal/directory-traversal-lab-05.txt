@@ -1,0 +1,5 @@
+File path traversal, validation of start of path
+Goal: Retrieve the contents of the /etc/passwd file.
+
+
+/var/www/images/67.jpg
