@@ -23,7 +23,7 @@ def command_exploit(url, command):
         proxies=proxies)
     if (len(response.text) > 3):
         return response.text
-    raise ValueError("Command injection failed")
+    raise ValueError("The Command Injection exploit failed.")
 
 if __name__ == "__main__":
     try:
