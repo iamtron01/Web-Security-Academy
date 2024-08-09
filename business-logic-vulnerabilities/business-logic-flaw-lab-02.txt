@@ -1,0 +1,19 @@
+High level logic vulnerability
+Goal: Exploit logic flaw to buy the lightweight l33t leather jacket
+wiener:peter
+
+1)
+-Click my account, login
+-Click home
+-Click Folding gadgets
+-Add to cart
+
+2)
+-Send post to repeater
+-make quantity -30
+-Send
+
+3)
+-Click jacket
+-Add jacket to cart
+-Place order
