@@ -1,0 +1,15 @@
+Excessive trust in client-side controls
+Goal: Exploit logic flaw to buy the Lightweight l33t jacket.
+wiener:peter
+
+1)
+-Login to account
+-Home
+-Click view details on jacket
+-Add to Cart
+-Send Post to repeater
+
+2)
+-Remove item from Cart
+-Repeater, Change price to 100
+-Place order
