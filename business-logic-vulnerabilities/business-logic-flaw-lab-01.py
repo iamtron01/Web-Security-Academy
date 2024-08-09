@@ -70,7 +70,7 @@ if __name__ == "__main__":
     try:
         url = sys.argv[1].strip()
         session = requests.Session()
-        print("[+] Starting Business Logic attack was successful.")
+        print("[+] Starting Business Logic attack...")
         if not is_login_successful(url, session):
             print("[-] Login Failed.")
             sys.exit(FAIL)
