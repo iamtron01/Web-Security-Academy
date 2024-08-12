@@ -1,0 +1,27 @@
+Inconsistent Security Controls
+Goal: Exploit logic flaw to access the admin panel and delete carlos
+
+1)
+-Target
+-Site
+-Right Click
+-Engagement Tools
+-Discover Content
+-> admin
+-> Admin interface only available if logged in as a DontWannaCry user
+
+2)
+-Register for account
+*user
+*attacker@exploit-0ac000d804dd67f980d89d5a013500d1.exploit-server.net
+*Password1
+
+3)
+-Check email
+-Click activate link
+-login
+-update email, user@dontwannacry.com
+
+4)
+-visit admin
+-delete carlos
