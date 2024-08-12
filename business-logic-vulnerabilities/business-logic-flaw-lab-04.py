@@ -26,7 +26,9 @@ def get_csrf_token(url, session):
 
 def is_login_successful(url, session):
     login_url = url + "/login"
-    csrf_token = get_csrf_token(login_url, session)
+    csrf_token = get_csrf_token(
+        login_url,
+        session)
     data_login = {
         "csrf": csrf_token,
         "username": "wiener",
