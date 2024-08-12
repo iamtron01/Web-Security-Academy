@@ -1,0 +1,24 @@
+Flawed enforcement of business rules
+Goal: Exploit logic flaw to buy the Lightweight 133t leather jacket
+
+wiener:peter
+
+1)
+-login
+-Click Home
+-Click jacket
+-Add to cart
+-Send cart post to repeater
+
+2)
+-Add coupon NEWCUST5
+-Send Coupon to Repeater
+-Do it again and get an error
+-Click purchase, not enough credit
+-Send checkout post to repeater
+
+3)
+-signup for newsletter, get signup30 coupon
+-Add it again and get an error
+-Apply the NewCust5 again
+-Keep alternating between the two coupons
