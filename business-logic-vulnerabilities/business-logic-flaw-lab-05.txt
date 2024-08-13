@@ -1,0 +1,31 @@
+Low level logic flaw
+Goal: Exploit logic flaw to buy the lightweight 133t leather jacket
+wiener:peter
+
+1)
+-Login
+-Home
+-View jacket
+-Add to cart
+-Go to cart
+-Place order
+
+2)
+-Can't send a parameter greater than 99
+-Remove items from cart
+
+3)
+-Send Cart Post to Intruder
+-Don't mark anything, keep at 99 quantity
+-Null payloads, continue indefinately
+-Start
+-Pause it
+
+4)
+-Current Total 19887529.88
+-19887529.88 / 1337 = 14874
+-14874 / 99 = 150
+-Intruder
+-Generate 145 payloads
+-1 concurrent request
+-Start
