@@ -89,7 +89,7 @@ if __name__ == "__main__":
         session = requests.Session()
         print("[+] Starting Business Logic attack...")
         if not is_wiener_login_sucessful(url, session):
-            print("[-] Login Failed.")
+            print("[-] Wiener Login Failed.")
             sys.exit(FAIL)
         if not is_password_change_successful(url, session):
             print("[-] Password change failed.")
