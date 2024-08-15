@@ -1,0 +1,17 @@
+Weak isolation on dual-use endpoint
+Goal: Eploit logic flaw to gain access to the administrator accoutn and delete Carlos.
+wiener:peter
+
+1)
+-login
+-change email, update
+-change password
+-Send the Post over to repeater for evaluation
+
+2)
+-Try admin, wrong current password
+-Remove current password from POST
+-Try different variations on administrator
+-administrator -> Ok
+-login
+-Delete Carlos
