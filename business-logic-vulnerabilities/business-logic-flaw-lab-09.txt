@@ -1,0 +1,17 @@
+Authentication bypass via flawed state machine
+Goal: Exploit logic flaw to access admin functionality and delete Carlos
+wiener:peter
+
+1)
+-login
+-Try manipulating the role to no avail
+
+2)
+-Intercept On
+-login
+-Drop the get to role selector
+
+3)
+-Refresh home
+-Admin Panel
+-Delete Carlos
