@@ -1,0 +1,18 @@
+Insufficient workflow validaiton
+Goal: Exploit logic flaw to purchase the leather jacket
+wiener:peter
+
+1)
+-login
+-Home
+-Add jacket to cart
+-Click cart
+-Place order
+-> Not enough credit
+
+2)
+-Purchase an item you do have enough credit for
+-> GET /cart/order-confirmation?order-confirmed=true
+-Put the jacket in cart
+-Send this to repeater, GET /cart/order-confirmation?order-confirmed=true
+-You get the jacket
