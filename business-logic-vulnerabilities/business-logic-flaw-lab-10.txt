@@ -4,6 +4,7 @@ wiener:peter
 
 1)
 -login
+-home
 -sign up for the newsletter and get the coupon SIGNUP30
 -add gift card to cart
 -apply coupon
@@ -25,5 +26,25 @@ x = 409
 -rule actions
 -run a macro
 -add
-post cart
-post cart coupon
+-post cart
+-post cart coupon
+-post cart checkout
+-get cart order confirmation
+-post gift card
+-Configure item on get
+-Add parameter, gift-card
+-Scroll down and select the top gift card
+-Ok
+-Configure item on post gift-card
+-gift-card derive from prior response
+-Ok 4 times
+
+3)
+-Send my-account to intruder
+-Payloads, Null Payloads
+-Generate 415
+-Resource Pool, New, Max concurrent 1
+-Start Attack
+
+4)
+-At the end at the jacket and purchase
