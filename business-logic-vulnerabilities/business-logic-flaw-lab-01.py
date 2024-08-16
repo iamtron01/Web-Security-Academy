@@ -17,10 +17,10 @@ def get_csrf_token(url, session):
         url,
         verify=False,
         proxies=proxies)
-    soup = BeautifulSoup(
+    html = BeautifulSoup(
         response.text,
         'html.parser')
-    csrf = soup.find(
+    csrf = html.find(
         "input", {'name': 'csrf'})['value']
     return csrf
 

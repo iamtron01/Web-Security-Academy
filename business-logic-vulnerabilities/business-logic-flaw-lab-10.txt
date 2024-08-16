@@ -1,0 +1,29 @@
+Infinite money logic flaw
+Goal: Exploit logic flaw and purchase jacket
+wiener:peter
+
+1)
+-login
+-sign up for the newsletter and get the coupon SIGNUP30
+-add gift card to cart
+-apply coupon
+-place order
+-redeem gift card
+
+1337 = 100 + 3x
+1227 = 3x
+1227 / 3
+x = 409
+
+2)
+-settings
+-sessions
+-click add
+-scope
+-include all urls
+-details
+-rule actions
+-run a macro
+-add
+post cart
+post cart coupon
