@@ -1,0 +1,8 @@
+Information disclosure on debug page
+Goal: Exploit vulnerability to obtain the SECRET_KEY environment variable.
+
+1)
+-Target
+-Site map
+-cgi-bin, phpinfo.php
+-> SECRET_KEY 91az4kn9g85fdwugdilha7ht74rc3kht
