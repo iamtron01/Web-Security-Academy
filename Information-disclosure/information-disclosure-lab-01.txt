@@ -1,0 +1,6 @@
+Information disclosure in error messages
+Goal: Exploit the vulnerability to obtain the version of the third-party framework.
+
+1)
+-Click a product
+-Change the product id to '
