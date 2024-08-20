@@ -1,0 +1,26 @@
+Authentication bypass via information disclosure
+Goal: Exploit vulnerability to obtain the SECRET_KEY environment variable.
+wiener:peter
+
+1)
+-Click a product
+-Send Get to repeater
+-Change get to TRACE
+-Copy, X-Custom-IP-Authorization: x.x.x.x (IP blanked out)
+
+2)
+-Repeater paste the custom header, X-Custom... change ip to 127.0.0.1
+-The above makes the app think its being accesses locally on the server
+-Change from TRACE to GET
+-Send
+-Admin panel disclosed /admin
+
+3)
+-Change GET /product?productId=1
+-Change GET /admin
+-Send
+
+4)
+-Change GET /admin
+-Chnage GET /admin/delete?username=carlos
+-Send
