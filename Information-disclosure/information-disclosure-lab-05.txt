@@ -1,0 +1,19 @@
+Information disclosure in version control history
+Goal:Disclose the administrator's crednetials and delete the Carlos user
+
+1)
+-Try .git at the end of the url
+-Click around
+0000000000000000000000000000000000000000 0d48ce63579772ef908ebee2361299f1ff3546bb Carlos Montoya <carlos@carlos-montoya.net> 1724187701 +0000	commit (initial): Add skeleton admin panel
+0d48ce63579772ef908ebee2361299f1ff3546bb d8d6a94dede64baff713a830f86653c0b019be99 Carlos Montoya <carlos@carlos-montoya.net> 1724187701 +0000	commit: Remove admin password from config
+
+2)
+-Terminal
+-wget -r https://0aea00ed044fc55e803d76ad008b00d0.web-security-academy.net/.git
+-sudo apt install git-cola
+-Open Git Cola (GUI)
+-Open the repo
+-Undo last commit
+-Get password, 8t9zymri58ylwzqyszdx
+-Login
+-Delete Carlos
