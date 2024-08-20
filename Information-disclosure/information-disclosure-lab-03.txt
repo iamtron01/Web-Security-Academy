@@ -1,0 +1,9 @@
+Source code disclosure via backup files
+Goal: Find the hidden backup file and retrieve the database password
+
+1)
+-look for robots.txt
+-disallow backup
+-also comes up on intruder short list
+-ProductTemplate.java.bak
+-> lwkmfk4snvy9atiehxcef8tabksfyz2l
