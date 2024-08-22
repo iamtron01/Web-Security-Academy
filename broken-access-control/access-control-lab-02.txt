@@ -1,0 +1,8 @@
+Unprotected admin functionality with unpredictable unpredictable
+Goal: Find the admin panel and delete the user carlos
+
+1)
+-Look for robots.txt
+-View source of home page
+-> /admin-qiz400
+-Delete Carlos

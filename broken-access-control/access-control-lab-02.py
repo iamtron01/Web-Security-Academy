@@ -25,7 +25,7 @@ def is_delete_carlos_successful(url):
         response.text,
         'lxml')
     admin_instances = lxml.find(
-        text=re.compile("/admin-"))
+        string=re.compile("/admin-"))
     admin_path = re.search(
         "href', '(.*)'", admin_instances)[1]
     cookies = {
