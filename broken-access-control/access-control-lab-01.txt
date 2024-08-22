@@ -1,0 +1,7 @@
+Unproteced admin function
+Goal: Find the admin panel and delete the user carlos
+
+1)
+-Brute force with intruder
+-/administrator-panel
+-Delete carlos
