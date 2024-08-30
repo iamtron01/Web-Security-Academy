@@ -1,0 +1,8 @@
+User role controlled by request parameter
+Goal: Access admin panel and use it to delete Carlos
+wiener:peter
+
+1)
+-Browser Inspect
+-Cookies, Admin = True
+-Delete Carlos
