@@ -1,0 +1,11 @@
+User role can be modified in user profile
+Goal: Access admin panel and delete Carlos
+wiener:peter
+
+1)
+-Update email
+-Response includes a roleid
+-Take post send to repeater
+-Add roleid, make it 2
+-Send
+-Admin Panel now visible, Game over

