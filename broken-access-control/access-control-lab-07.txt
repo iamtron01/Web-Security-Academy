@@ -1,0 +1,10 @@
+User ID controlled by request parameter
+Goal: Obtain API key for the user carlos and submit it as a solution.
+wiener:peter
+
+1)
+-login
+-Send post to repeater
+-Change id to carlos
+-Send
+ -> L7awkmM3VlOmk7iJgJoxiDECIS2f23qy
