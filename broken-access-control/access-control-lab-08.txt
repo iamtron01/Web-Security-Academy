@@ -1,0 +1,10 @@
+User ID controlled by request parameter, with unpredictable user IDs
+Goal: Find GUID for Carlos and compromise his account
+wiener:peter
+
+1)
+-login
+-send get to repeater
+-look for Guid of Carlos, replace Guid
+-send
+-> 07EsG9QHab7RNaUwT5Daiy5txLz1Frkr

