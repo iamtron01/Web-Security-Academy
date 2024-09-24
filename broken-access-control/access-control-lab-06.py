@@ -46,7 +46,7 @@ if __name__ == "__main__":
         print("[+] The Access Control attack was successful.")
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])
-        print('[-] Example: %s www.example.com' % sys.argv[0])
+        print("[-] Example: %s www.example.com" % sys.argv[0])
         sys.exit(FAIL)
     except Exception as exception:
         print("[-] An exception occured %s" % exception)
