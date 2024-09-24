@@ -1,0 +1,18 @@
+Method-based access control can be circumvented
+Goal: Promote user to become administrator
+administrator:admin wiener:peter
+
+1)
+-login with administrator
+-admin panel
+-upgrade carlos
+-send post to repeater
+
+2)
+-login with wiener
+-try wienter's session cookie in repeater, send
+-> Unauthorized
+
+3)
+-Change request Method, Send
+-> GET /admin-roles?username=wiener&action=upgrade
