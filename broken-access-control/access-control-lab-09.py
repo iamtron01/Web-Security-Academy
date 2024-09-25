@@ -1,8 +1,8 @@
 import requests
 import sys
 import urllib3
-from bs4 import BeautifulSoup
 import re
+from bs4 import BeautifulSoup
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 

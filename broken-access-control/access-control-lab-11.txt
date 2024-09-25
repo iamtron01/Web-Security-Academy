@@ -1,0 +1,7 @@
+Insecure direct object references
+Goal: Find the Carlos user password and log into the account.
+
+1)
+-Live Chat
+-Download transcript, note file name is 2.txt
+-Download 1.txt, found Carlos' password
