@@ -1,0 +1,14 @@
+Referer-based access control
+Goal: Promote winer to administrator
+administrator:admin, wiener:peter
+
+1)
+-login as administrator
+-upgrade Carlos
+-Send upgrade Carlos to repeater
+
+2)
+-login as wiener
+-Grab wiener cookie, paste in Get in repeater
+-Change param username=wiener
+-Send
