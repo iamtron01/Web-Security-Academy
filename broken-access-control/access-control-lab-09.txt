@@ -1,0 +1,9 @@
+User ID controlled by request parameter with data leakage in redirect.
+Goal: Obtain the API key for the carlos user.
+wiener:peter
+
+1)
+-login
+-change the id=wiener to id=carlos
+-Note in the 302 redirect that it gives you Carlos' API key
+in the body in Burp, which you won't see in the browser.
