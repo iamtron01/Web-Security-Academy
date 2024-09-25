@@ -1,0 +1,13 @@
+User ID controlled by request parameter with password disclosure
+Goal: Retrieve the administrator's password and delete the user carlos.
+wiener:peter
+
+1)
+-login
+-right click password and inspect
+-Send get to repeater, change param id=administrator
+-> password value, 8elvj2gocpob6npgic55
+
+2)
+-Login as administrator
+-Delete carlos
