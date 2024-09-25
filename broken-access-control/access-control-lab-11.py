@@ -66,7 +66,7 @@ if __name__ == "__main__":
         if not is_login_successful(url, session, password):
             print("[-] Login was not successful.")
             sys.exit(FAIL)
-        print("[=] Sucessfully logged into Carlos' account")
+        print("[+] Sucessfully logged into Carlos' account")
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])
         print("[-] Example: %s www.example.com" % sys.argv[0])

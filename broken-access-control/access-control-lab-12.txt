@@ -1,0 +1,14 @@
+Multi-step process with no access control on one step.
+Goal: Exploit the access control flaw to promote the wiener account to administrator
+administrator:admin, wiener:peter
+
+1)
+-login as administrator
+-upgrade carlos, send to repeater
+-second step, send to repeater
+
+2)
+-login as wiener
+-inspect, grab cookie, Vt52JqB3rWJe1BfDE7Os3uOHBL9d6Ioz
+-change cookie in post to wiener
+-send
