@@ -3,7 +3,7 @@ import sys
 import urllib3
 from bs4 import BeautifulSoup
 import random, string
-from requests_toolbelt import MultiPartEncoder
+from requests_toolbelt import MultipartEncoder
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -58,7 +58,7 @@ def is_upload_webshell_successful(url, session):
         '------WebKitFormBoundary' + 
         ''.join(random.sample(
             string.ascii_letters + string.digits, 16)))
-    multi_part = MultiPartEncoder(
+    multi_part = MultipartEncoder(
         fields=params,
         boundary=boundary
     )

