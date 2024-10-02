@@ -44,7 +44,8 @@ def is_login_successful(url, session):
 
 def is_upload_webshell_successful(url, session):
     account_url = url + "/my-account"
-    csrf_token = get_csrf_token(account_url, session)
+    csrf_token = get_csrf_token(
+        account_url, session)
     avatar_url = account_url + "/avatar"
     params = {
         "avatar": (
