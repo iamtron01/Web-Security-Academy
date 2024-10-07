@@ -48,7 +48,7 @@ if __name__ == "__main__":
         if not is_delete_user_check_successful(url):
             print("[-] Delete user check was not successful.")
             sys.exit(FAIL)
-        print("[+] SSRF Attack was successful")
+        print("[+] SSRF Attack was successful.")
     except IndexError:
         print("[-] Usage: %s <url>" % sys.argv[0])
         print("[-] Example: %s www.example.com" % sys.argv[0])
