@@ -1,0 +1,8 @@
+
+Vulnerable feature - stock check functionality
+Goal:Change the stock check url to access the admin interface and delete the Carlos user.
+
+1)
+-change stock api
+-http://localhost/admin
+-http://localhost/admin/delete?username=carlos
