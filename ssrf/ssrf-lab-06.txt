@@ -2,3 +2,10 @@ Blind SSRF with out-of-band detection
 Vulnerable parameter - Referer header when a product page is loaded
 Goal: Use this functionality to cause an HTTP request to the public Burp Collaborator server.
 
+1)
+-Click a product
+-Send Get to repeater
+-Note the Referer
+-Open Collaborator, ji5w501bmz1pfk8xigqoedmw0n6eu4it.oastify.com
+-Replace Referer, http://ji5w501bmz1pfk8xigqoedmw0n6eu4it.oastify.com
+-Send
