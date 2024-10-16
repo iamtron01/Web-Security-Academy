@@ -1,0 +1,5 @@
+Exploiting XXE to retrieve data by repurposing a local DTD
+Goal: Exploit the XXE injection to trigger an error message containing the contents of the /etc/passwd file.
+
+1)
+-
